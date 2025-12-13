@@ -1,0 +1,633 @@
+*, *::before, *::after{
+    padding: 0;
+    margin: 0;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    text-decoration: none;
+    list-style: none;
+    scroll-behavior: smooth;
+}
+
+:root {
+    --bg-color: #101317;
+    --second-bg-color: #17191b;
+    --text-color: #fff;
+    --main-color: orangered;
+
+    --logo-font-size: 4rem;
+    --navbar-font-size: 2rem;
+    --botton-font-size: 1.8rem;
+
+    --heading-font-size: 6rem;
+    --subheading-font-size: 4.5rem;
+    --subsubheading-font-size: 3rem;
+    --content-font-size: 2rem;
+}
+
+html{
+    font-size: 62.5%;  /*62.5% of browser's default font size i.e. 62.5% of 16px = 10px*/
+    overflow-x: hidden;
+}
+
+/*header, section{
+    max-width: 240rem;
+    margin: 0 auto;
+}*/
+
+section{
+    min-height: 100vh;
+    width: 100%;
+    padding: 9rem 12.5% 5rem;
+}
+
+.heading{
+    text-align: center;
+    font-size: var(--heading-font-size);
+    line-height: 2;
+}
+
+.subHeading{
+    font-size: var(--subheading-font-size);
+}
+
+.subSubHeading{
+    font-size: var(--subsubheading-font-size);
+}
+
+.header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 3.5rem 12.5%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(1rem);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+}
+
+.logo{
+    font-size: var(--logo-font-size);
+    color: white;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.logo:hover{
+    color: var(--main-color);
+    text-shadow: 0 0 2.5rem var(--main-color),
+                 0 0 5rem var(--main-color);
+    transform: scale(1.1);
+}
+
+span{
+    color: var(--main-color);
+}
+
+#menu-icon{
+    font-size: 3.6rem;
+    color: white;
+    display: none;
+}
+
+.bx::before {
+    font-family: 'boxicons' !important;
+}
+
+
+.navbar a{
+    font-size: var(--navbar-font-size);
+    color: white;
+    font-weight: 500;
+    margin: 0 2rem;
+    baorder-bottom: 0.3rem solid transparent;
+    transition: 0.1s ease;
+}
+
+.navbar a:hover,
+.navbar a.active{
+    color: var(--main-color);
+    border-bottom: 0.3rem solid var(--main-color);
+}
+
+.contact{
+    padding: 1rem 2.8rem;
+    background-color: white;
+    color: black;
+    border: 0.2rem solid transparent;
+    border-radius: 0.8rem;
+    font-size: var(--botton-font-size);
+    letter-spacing: 0.1rem;
+    font-weight: 600;
+    transition: 0.3s ease;
+}
+
+.contact:hover{
+    background-color: var(--main-color);
+    box-shadow: 0 0 2.5rem var(--main-color);
+    color: white;
+}
+
+.portfolio{
+    width: 100%;
+    min-height: 100vh;
+    background: rgb(241, 241, 241);
+    display: flex;
+    align-items: center;
+    gap: 7em;
+    padding: 7rem 12.5% 0;
+}
+
+.portfolio-content{
+    flex: 0 0 60%;
+}
+
+.portfolio-content h2{
+    line-height: 2;
+}
+
+.portfolio-content h1{
+    text-align: left;
+    line-height: 1;
+}
+
+p, li{
+    font-size: var(--content-font-size);
+}
+
+.portfolio-content p{
+    text-align: justify;
+    margin: 2.5rem 0 3rem;
+}
+
+/*.btn-box{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    gap: 2em;
+}*/
+
+.btn-box-grid{
+    width: 100%;
+    display: grid;
+/*    grid-template-columns: 1fr 1fr  1fr;*/
+    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+    gap: 2rem;
+}
+
+/*.btn-box-grid > * {
+  *//* Apply to ALL direct children *//*
+  width: 100%;
+  box-sizing: border-box;
+
+  *//* Make link look/behave like button if needed *//*
+  display: inline-block;
+}*/
+
+.btn-1{
+    display: inline-block;
+    padding: 1.5rem 2.8rem;
+    background-color: black;
+    color: white;
+    border: 0.2rem solid transparent;
+    border-radius: 0.8rem;
+    font-size: var(--botton-font-size);
+    letter-spacing: 0.1rem;
+    font-weight: 600;
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-1:hover{
+    background-color: white;
+    color: black;
+    border: 0.2rem solid black;
+}
+
+.btn-2{
+    display: inline-block;
+    padding: 1.5rem 2.8rem;
+    background-color: var(--main-color);
+    color: white;
+    border: 0.2rem solid black;
+    border-radius: 0.8rem;
+    font-size: var(--botton-font-size);
+    letter-spacing: .1rem;
+    font-weight: 600;
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-2:hover{
+    background-color: white;
+    color: var(--main-color);
+}
+
+.btn-box-grid a{
+    text-align: center;
+}
+
+.portfolio .social{
+    text-align: center;
+    padding-bottom: 2.5rem;
+    color: white;
+}
+
+.portfolio .social a{
+    font-size: 2.4rem;
+    color: black;
+    border: .2rem solid var(--main-color);
+    width: 4rem;
+    height: 4rem;
+    line-height: 3.8rem;
+    display: inline-block;
+    text-align: center;
+    border-radius: 50%;
+    margin: 0 .8rem;
+    box-shadow: inset 0 0 1rem var(--main-color), 0 0 1rem var(--main-color);
+    transition: 0.3s ease;
+}
+
+.portfolio .social a:hover{
+    transform: scale(1.2)translateY(-10px);
+    color: var(--main-color);
+    border: .2rem solid var(--main-color);
+}
+
+.img-box{
+    flex: 0 0 40%;
+}
+
+.img-box img{
+    border-radius: 50%;
+    width: 100%;
+}
+
+::-webkit-scrollbar{
+    width: 1.5rem;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: var(--main-color);
+}
+
+::-webkit-scrollbar-track{
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 5rem;
+}
+
+.about{
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12rem 12.5% 5rem;
+    gap: 10em;
+    background: black;
+}
+
+.about-img img{
+    position: relative;
+    width: 25vw;
+    box-shadow: 0 0 2.5rem var(--main-color),
+                0 0 5rem var(--main-color);
+    border-radius: 50%;
+}
+.about-content h1,
+.about-content h2{
+    text-align: left;
+    color: white;
+}
+
+.about-content p{
+    color: white;
+    text-align: justify;
+    margin: 2em 0 2em;
+}
+
+.about-content ul li{
+    color: white;
+    list-style: disc;
+    text-align: justify;
+    margin: 0 0 0.5em 1em;
+}
+
+.about-content ul li:nth-child(5){
+    margin: 0 0 0 1em;
+}
+
+.about-content ul li::marker{
+    color: var(--main-color);
+}
+
+.service-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.service-container .service-box {
+    flex: 1 1 40rem;
+    background: var(--second-bg-color);
+    padding: 3rem 2rem 4rem;
+    border-radius: 2rem;
+    text-align: center;
+    border: 0.2rem solid var(--bg-color);
+    transition: 0.5s ease;
+}
+
+.service-container .service-box:hover {
+    border-color: var(--main-color);
+    transform: scale(1.02);
+}
+
+.service-box i{
+    font-size: 7rem;
+    color: var(--main-color);
+}
+
+.service-box h2{
+    line-height: 2;
+    color: white;
+}
+
+.service-box p{
+    color: white;
+    text-align: justify;
+}
+
+.service-box a{
+    margin-top: 2rem;
+}
+
+/* Portfolio section */
+.projects {
+    background: var(--second-bg-color);
+}
+
+.projects h1{
+    color: white;
+}
+
+/* Portfolio grid container */
+.project-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    gap: 2.5rem;
+}
+
+/* Individual portfolio boxes */
+.project-container .project-box {
+    position: relative;
+    border-radius: 2rem;
+    box-shadow: 0 0 1rem var(--bg-color);
+    overflow: hidden;
+    display: flex;
+}
+
+.project-box img{
+    width: 100%;
+    transition: 0.5s ease;
+}
+
+.project-box:hover img{
+    transform: scale(1.1)
+}
+
+/* Portfolio info overlay */
+.project-box .project-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 0 4rem;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+/* Hover effect for portfolio info */
+.project-box .project-info:hover {
+    background: radial-gradient(rgba(0, 0, 0, 0.165), var(--main-color));
+    transform: scale(1.1);
+}
+
+/* Style for links inside portfolio info */
+.project-info a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 5rem;
+    height: 5rem;
+    background: var(--text-color);
+    border-radius: 50%;
+}
+
+/* Style for icons inside those links */
+.project-info a i {
+    font-size: 3rem;
+    color: var(--second-bg-color);
+}
+
+/*
+additional css to style the link icon on hover
+*/
+/* Add hover effects */
+.project-info a:hover {
+    background: var(--main-color);
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+}
+
+.project-info a:hover i {
+    color: white;
+}
+
+/* Optional: Add transition to base state */
+.project-info a {
+    transition: all 0.3s ease;
+}
+
+.project-info h2{
+    line-height: 2;
+    color: white;
+}
+
+.project-info p{
+    color: white;
+    text-align: justify;
+}
+
+.project-info a{
+    margin-top: 2rem;
+}
+
+.contact-form form{
+    max-width: 80em;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.contact-form form .input-box{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.contact-form form .input-box input,
+.contact-form form textarea{
+    width: 100%;
+    padding: 1.5em;
+    font-size: 1.8rem;
+    color: black;
+    background: rgb(241, 241, 241);
+    border-radius: 0.8rem;
+    margin: 1rem 0;
+    resize: none;
+}
+
+.contact-form form input{
+    margin-top: 1rem;
+}
+
+.footer{
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    padding: 4rem 0;
+    background: black;
+}
+
+.footer .social{
+    text-align: center;
+    padding-bottom: 2.5rem;
+    color: white;
+}
+
+.footer .social a{
+    font-size: 2.4rem;
+    color: white;
+    border: .2rem solid var(--main-color);
+    width: 4rem;
+    height: 4rem;
+    line-height: 3.8rem;
+    display: inline-block;
+    text-align: center;
+    border-radius: 50%;
+    margin: 0 .8rem;
+    box-shadow: inset 0 0 1rem var(--main-color), 0 0 1rem var(--main-color);
+    transition: 0.3s ease;
+}
+
+.footer .social a:hover{
+    transform: scale(1.2)translateY(-10px);
+    color: var(--main-color);
+    border: .2rem solid var(--main-color);
+}
+
+.footer ul{
+    margin-top: 0;
+    padding: 0;
+    font-size: 1.8rem;
+    line-height: 1.6;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.footer ul li a{
+    color: white;
+    border-bottom: .3rem solid transparent;
+    transition: 0.3s ease;
+}
+
+.footer ul li a:hover{
+    border-bottom: .3rem solid var(--main-color);
+}
+
+.footer ul li{
+    display: inline-block;
+    padding: 0 1.5rem;
+}
+
+.footer .copyright{
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 1.2rem;
+    color: white;
+}
+
+/*
+for responsive*/
+@media (max-width: 1500px) {
+    :root{
+        --botton-font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 1350px) {
+    :root{
+        --botton-font-size: 1.2rem;
+    }
+}
+
+/*@media (max-width: 1200px) {
+    .btn-box-grid{
+        grid-template-row:  repeat(3, minmax(0, 1fr));
+    }
+}*/
+
+
+@media (max-width: 1430px) {
+    :root{
+        --heading-font-size: 5rem;
+        --subheading-font-size: 4.5rem;
+
+    }
+}
+
+@media (max-width: 1191px) {
+    :root{
+        --heading-font-size: 4rem;
+        --subheading-font-size: 4rem;
+    }
+}
+
+@media (max-width: 768px) {
+    #menu-icon {
+        display: block;
+    }
+
+    .navbar {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        padding: 1rem 3%;
+        background: var(--bg-color);
+        border-top: 0.1rem solid rgba(0, 0, 0, 0.104);
+        display: none;
+    }
+
+    .navbar.active {
+        display: block;
+    }
+
+    .navbar a {
+        display: block;
+        font-size: 2rem;
+        margin: 3rem 0;
+    }
+}
