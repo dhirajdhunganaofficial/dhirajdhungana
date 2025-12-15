@@ -114,6 +114,10 @@ span{
     border-bottom: 0.3rem solid var(--main-color);
 }
 
+.contact-navItem{
+    display: none;
+}
+
 .contact{
     padding: 1rem 2.8rem;
     background-color: white;
@@ -606,8 +610,12 @@ for responsive*/
 }
 
 @media (max-width: 768px) {
-    #menu-icon {
+    #menu-icon, .contact-navItem{
         display: block;
+    }
+
+    .contact{
+        display:none;
     }
 
     .navbar {
