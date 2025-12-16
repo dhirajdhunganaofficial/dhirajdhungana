@@ -20,10 +20,17 @@
     --navbar-font-size: 2rem;
     --botton-font-size: 1.8rem;
 
+    --servicesicons-font-size: 7rem;
+    --linkicon-font-size: 3rem;
+    --menuicon-font-size: 3.6rem;
+    --socialmediaicon-font-size: 2.4rem;
+
     --heading-font-size: 6rem;
     --subheading-font-size: 4.5rem;
     --subsubheading-font-size: 3rem;
     --content-font-size: 2rem;
+    --footerlinks-font-size: 1.8rem;
+    --copyright-font-size: 1.2rem;
 }
 
 html{
@@ -89,7 +96,7 @@ span{
 }
 
 #menu-icon{
-    font-size: 3.6rem;
+    font-size: var(--menuicon-font-size);
     color: white;
     display: none;
 }
@@ -142,7 +149,7 @@ span{
     background: rgb(241, 241, 241);
     display: flex;
     align-items: center;
-    gap: 7em;
+    gap: 5%;
     padding: 7rem 12.5% 0;
 }
 
@@ -179,8 +186,8 @@ p, li{
     width: 100%;
     display: grid;
 /*    grid-template-columns: 1fr 1fr  1fr;*/
-    grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    gap: 1%;
 }
 
 /*.btn-box-grid > * {
@@ -242,7 +249,7 @@ p, li{
 }
 
 .portfolio .social a{
-    font-size: 2.4rem;
+    font-size: var(--socialmediaicon-font-size);
     color: black;
     border: .2rem solid var(--main-color);
     width: 4rem;
@@ -353,7 +360,7 @@ p, li{
 }
 
 .service-box i{
-    font-size: 7rem;
+    font-size: var(--servicesicons-font-size);
     color: var(--main-color);
 }
 
@@ -442,7 +449,7 @@ p, li{
 
 /* Style for icons inside those links */
 .project-info a i {
-    font-size: 3rem;
+    font-size: var(--linkicon-font-size);
     color: var(--second-bg-color);
 }
 
@@ -495,7 +502,7 @@ additional css to style the link icon on hover
 .contact-form form textarea{
     width: 100%;
     padding: 1.5em;
-    font-size: 1.8rem;
+    font-size: var(--content-font-size);
     color: black;
     background: rgb(241, 241, 241);
     border-radius: 0.8rem;
@@ -522,7 +529,7 @@ additional css to style the link icon on hover
 }
 
 .footer .social a{
-    font-size: 2.4rem;
+    font-size: var(--socialmediaicon-font-size);
     color: white;
     border: .2rem solid var(--main-color);
     width: 4rem;
@@ -545,7 +552,6 @@ additional css to style the link icon on hover
 .footer ul{
     margin-top: 0;
     padding: 0;
-    font-size: 1.8rem;
     line-height: 1.6;
     margin-bottom: 0;
     text-align: center;
@@ -562,6 +568,7 @@ additional css to style the link icon on hover
 }
 
 .footer ul li{
+    font-size: var(--footerlinks-font-size);
     display: inline-block;
     padding: 0 1.5rem;
 }
@@ -569,7 +576,7 @@ additional css to style the link icon on hover
 .footer .copyright{
     margin-top: 1.5rem;
     text-align: center;
-    font-size: 1.2rem;
+    font-size: var(--copyright-font-size);
     color: white;
 }
 
@@ -610,6 +617,30 @@ for responsive*/
 }
 
 @media (max-width: 768px) {
+
+    :root {
+        --logo-font-size: 2.5rem;
+        --navbar-font-size: 1.5rem;
+        --botton-font-size: 1.5rem;
+
+        --menuicon-font-size: 2.5rem;
+        --servicesicons-font-size: 7rem;
+        --linkicon-font-size: 3rem;
+        --socialmediaicon-font-size: 2.4rem;
+
+        --heading-font-size: 4.5rem;
+        --subheading-font-size: 3rem;
+        --subsubheading-font-size: 2.5rem;
+        --content-font-size: 1.8rem;
+        --footerlinks-font-size: 1.5rem;
+        --copyright-font-size: 1.2rem;
+    }
+
+    .header{
+/*        position: sticky;*/
+        padding: 1.5rem 5%;
+    }
+
     #menu-icon, .contact-navItem{
         display: block;
     }
@@ -623,9 +654,8 @@ for responsive*/
         top: 100%;
         left: 0;
         width: 100%;
-        padding: 1rem 3%;
+        padding: 0 5%;
         background: var(--bg-color);
-        border-top: 0.1rem solid rgba(0, 0, 0, 0.104);
         display: none;
     }
 
@@ -635,7 +665,43 @@ for responsive*/
 
     .navbar a {
         display: block;
-        font-size: 2rem;
         margin: 3rem 0;
     }
+
+    .portfolio{
+        flex-direction: column-reverse;
+        padding: 7rem 5% 2rem;
+    }
+
+    .img-box img{
+        width: 50vw;
+    }
+
+    .about{
+        flex-direction: column;
+        padding: 2rem 5%;
+        gap: 0;
+    }
+
+    .about-img img{
+        width: 50vw;
+    }
+
+    .services{
+        padding: 2rem 5%;
+    }
+
+    .projects{
+        padding: 2rem 5%;
+    }
+
+    .contact-form{
+        padding: 2rem 5%;
+    }
+
+    .footer{
+        padding: 1.5rem 5%;
+    }
+
+
 }
