@@ -1,0 +1,47 @@
+{% include 'commonHeadPart.html' %}
+
+<link href="{{ url_for('static', filename='qrCodeStyle.css')}}" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+{% include 'header.html' %}
+
+<section class="text-center">
+    <h1 class="heading">Welcome to <span>QR Code Generator</span></h1>
+
+    <img class="thumbnail" src="../static/img/projects/qr_code.gif" alt="QR Code Generator">
+
+
+    <form action="/qrCode" method="post">
+
+        <div class="contents">
+
+            <div class="inputElements">
+                <input type="url" class="url" name="url" placeholder="paste or type URL" required><br>
+                <input type="submit" value="Generate" class="btn-2">
+            </div>
+
+            <div class="outputElements">
+                {% if qrCode %}
+                <img class="active" src="data:image/png;base64,{{ qrCode }}" alt="Inline Image">
+                <p>Please scan the QR Code to open the link</p>
+                {% endif %}
+            </div>
+        </div>
+
+    </form>
+
+</section>
+
+
+<script>
+    // Prevent form resubmission when user refreshes page
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
+</script>
+
+{% include 'footer.html' %}

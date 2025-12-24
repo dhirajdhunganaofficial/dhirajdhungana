@@ -1,58 +1,13 @@
-<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% include 'commonHeadPart.html' %}
 
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link href="{{ url_for('static', filename='style.css')}}" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 
-
-    <title>{{title}}</title>
-
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-    <!--<script>
-       window.onload = function() {
-           {% if alert %}
-               alert("Message send!");
-               alert = False;
-           {% endif %}
-       };
-
-       document.addEventListener('DOMContentLoaded', function() {
-           {% if alert %}
-               Swal.fire({
-                   title: 'Success',
-                   text: 'Your message is sent successfully to Dhiraj.He will contact you soon. Thank you so much!',
-                   icon: 'success',
-                   confirmButtonText: 'OK',
-                   alert = False
-               });
-           {% endif %}
-
-       });
-   </script>-->
 </head>
+
 <body>
-<header class="header">
-    <a href="#portfolio" class="logo"><span>Dhi</span>raj</a>
 
-    <i class='bx bx-menu' id="menu-icon"></i>
-
-    <nav class="navbar">
-        <a href="#portfolio" class="active">Introduction</a>
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact" class="contact-navItem">Contact Me</a>
-        <!--<a href="#blogs">Blogs</a>
-        <a href="#hobbies">Hobbies</a>-->
-        <!--            <a href="{{ url_for('oldSite') }}">Old Site</a>-->
-    </nav>
-
-    <a href="#contact" class="contact">Contact Me</a>
-</header>
+{% include 'header.html' %}
 
 <section class="portfolio" id="portfolio">
     <div class="portfolio-content">
@@ -78,8 +33,9 @@
         </div>
 
         <div class="btn-box-grid">
-            <button class="btn-1">Hire Me</button>
+            <button class="btn-gold">Hire Me</button>
             <button class="btn-2">Experience</button>
+            <a class="btn-2" href="{{ url_for('static', filename='pdf/Recommendation letter - Dhiraj Dhungana.pdf')}}">Recommendation</a>
         </div>
 
 
@@ -87,44 +43,6 @@
 
     <div class="img-box">
         <img src="../static/img/dhiraj_profile.jpg" alt="dhiraj_profile">
-    </div>
-</section>
-
-<section class="about" id="about">
-    <div class="about-img">
-        <img src="../static/img/dhiraj.jpg" alt="dhiraj_profile">
-    </div>
-
-    <div class="about-content">
-        <h1 class="heading">About <span>Me</span></h1>
-        <h2 class="subHeading">Full-Stack <span>Developer</span></h2>
-        <p>
-            Former <b>Associate Software Engineer</b> at <b><a href="https://www.linkedin.com/company/deerwalk-inc/"
-                                                               target="_blank">Deerwalk Inc.</a>,</b> currently
-            known as <b><a href="https://www.linkedin.com/company/cedar-gate-tech/" target="_blank">Cedar Gate
-            Technologies</a>.</b>
-            I started my career there as an intern on 2<sup>nd</sup>, September, 2019, and became full-time on
-            4<sup>th</sup>, May, 2020, and worked until 23<sup>rd</sup>, February, 2021, before I decided to pursue
-            a Master of Information Technology in Australia.
-            During my tenure there as an experienced software engineer,
-        </p>
-
-        <ul>
-            <li>I designed and developed scalable web applications along with RESTful APIs.</li>
-            <li>I am proficient in Java, Spring Boot, JavaScript, Angular, and React.</li>
-            <li>I have hands-on experience in cloud services like AWS S3, SQS, CloudWatch, and Lambda.</li>
-            <li>I have experience working with Grails, .NET, and Azure Test Plan.</li>
-            <li>I have a strong background in the MySQL Database Management System.</li>
-        </ul>
-
-        <p>
-            With a solid understanding of Agile methodologies, along with Scrum and test-driven development, I was
-            able to deliver high-quality software solutions by collaborating with cross-functional teams to conduct
-            code reviews.<br><br>
-        </p>
-        <a href="#" class="btn-2">Experience</a>
-        <a class="btn-2"
-           href="{{ url_for('static', filename='pdf/Recommendation letter - Dhiraj Dhungana.pdf')}}">Recommendation</a>
     </div>
 </section>
 
@@ -217,7 +135,7 @@
         </div>
         <div class="service-box">
             <i class='bx bx-cloud'></i>
-            <h2 class="subSubHeading">Cloud Deployment Services</h2>
+            <h2 class="subSubHeading">Cloud Services</h2>
             <p>I build and manage cloud infrastructures that make your applications reliable, scalable, and secure from
                 day one. My focus is on deployments that prioritize performance, resilience, and operational clarity. I
                 enjoy turning architectural plans into clean, well-orchestrated environments that run smoothly and can
@@ -243,18 +161,14 @@
 
     <div class="project-container">
         <div class="project-box">
-            <img src="../static/img/dhiraj_profile.jpg" alt="dhiraj_profile">
+            <img src="../static/img/projects/qr_code_generator.jpg" alt="QR Code Generator">
             <div class="project-info">
-                <h2 class="subHeading">Web Design</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, quaerat.Lorem ipsum dolor sit amet,
-                    consectetur adipisicing elit. Ad, quaerat.Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                    Ad, quaerat.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, quaerat.Lorem ipsum dolor
-                    sit amet, consectetur adipisicing elit. Ad, quaerat.Lorem ipsum dolor sit amet, consectetur
-                    adipisicing elit. Ad, quaerat.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad,
-                    quaerat.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, quaerat.Lorem ipsum dolor sit
-                    amet, consectetur adipisicing elit. Ad, quaerat.Lorem ipsum dolor sit amet, consectetur adipisicing
-                    elit. Ad, quaerat.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad, quaerat.</p>
-                <a href="#"><i class='bx bx-link'></i></a>
+                <h2 class="subHeading">QR Generator</h2>
+                <p>Imagine! You have impressive social media profile, but sharing it with someone is hectic. But with
+                    this application you can easily generate a QR code for your social media profile and share it with
+                    anyone so that they can check it out instantly without every touching those buttons on their
+                    keyboard. Isn't it amazing?</p>
+                <a href="{{ url_for('qrCode') }}"><i class='bx bx-link'></i></a>
             </div>
         </div>
         <div class="project-box">
@@ -297,6 +211,41 @@
                 <a href="#"><i class='bx bx-link'></i></a>
             </div>
         </div>
+    </div>
+</section>
+
+<section class="about" id="about">
+    <div class="about-img">
+        <img src="../static/img/dhiraj.jpg" alt="dhiraj_profile">
+    </div>
+
+    <div class="about-content">
+        <h1 class="heading">About <span>Me</span></h1>
+        <h2 class="subHeading">Full-Stack <span>Developer</span></h2>
+        <p>
+            Former <b>Associate Software Engineer</b> at <b><a href="https://www.linkedin.com/company/deerwalk-inc/"
+                                                               target="_blank">Deerwalk Inc.</a>,</b> currently
+            known as <b><a href="https://www.linkedin.com/company/cedar-gate-tech/" target="_blank">Cedar Gate
+            Technologies</a>.</b>
+            I started my career there as an intern on 2<sup>nd</sup>, September, 2019, and became full-time on
+            4<sup>th</sup>, May, 2020, and worked until 23<sup>rd</sup>, February, 2021, before I decided to pursue
+            a Master of Information Technology in Australia.
+            During my tenure there as an experienced software engineer,
+        </p>
+
+        <ul>
+            <li>I designed and developed scalable web applications along with RESTful APIs.</li>
+            <li>I am proficient in Java, Spring Boot, JavaScript, Angular, and React.</li>
+            <li>I have hands-on experience in cloud services like AWS S3, SQS, CloudWatch, and Lambda.</li>
+            <li>I have experience working with Grails, .NET, and Azure Test Plan.</li>
+            <li>I have a strong background in the MySQL Database Management System.</li>
+        </ul>
+
+        <p>
+            With a solid understanding of Agile methodologies, along with Scrum and test-driven development, I was
+            able to deliver high-quality software solutions by collaborating with cross-functional teams to conduct
+            code reviews.<br><br>
+        </p>
     </div>
 </section>
 
@@ -330,38 +279,4 @@
     </form>
 </section>
 
-<footer class="footer">
-
-    <div class="social">
-        <a href="https://www.linkedin.com/in/dhirajdhungana/"><i class='bx bxl-linkedin-square'></i></a>
-        <a href="https://www.facebook.com/originaldhiraj"><i class='bx bxl-facebook-circle'></i></a>
-        <a href="https://www.instagram.com/dh1raz/"><i class='bx bxl-instagram-alt'></i></a>
-        <a href="https://www.youtube.com/@dhirajdhunganaofficial"><i class='bx bxl-youtube'></i></a>
-    </div>
-
-    <ul class="list">
-        <li>
-            <a href="#portfolio">Home</a>
-        </li>
-        <li>
-            <a href="#about">About Me</a>
-        </li>
-        <li>
-            <a href="#services">Services</a>
-        </li>
-        <li>
-            <a href="#projects">Projects</a>
-        </li>
-    </ul>
-
-    <p class="copyright">&copy; 2021
-        <script>new Date().getFullYear()>2021&&document.write(" - "+new Date().getFullYear());</script>
-        Dhiraj Dhungana | All Rights Reserved
-    </p>
-
-</footer>
-
-<script type="text/javascript" src="{{ url_for('static', filename='script.js')}}"></script>
-
-</body>
-</html>
+{% include 'footer.html' %}

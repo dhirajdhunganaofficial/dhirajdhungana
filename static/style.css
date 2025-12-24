@@ -22,10 +22,10 @@
 
     --servicesicons-font-size: 7rem;
     --linkicon-font-size: 3rem;
-    --menuicon-font-size: 3.6rem;
+    --menuicon-font-size: 4rem;
     --socialmediaicon-font-size: 2.4rem;
 
-    --heading-font-size: 6rem;
+    --heading-font-size: 5rem;
     --subheading-font-size: 4.5rem;
     --subsubheading-font-size: 3rem;
     --content-font-size: 2rem;
@@ -36,6 +36,7 @@
 html{
     font-size: 62.5%;  /*62.5% of browser's default font size i.e. 62.5% of 16px = 10px*/
     overflow-x: hidden;
+    background: rgb(241, 241, 241);
 }
 
 /*header, section{
@@ -46,7 +47,7 @@ html{
 section{
     min-height: 100vh;
     width: 100%;
-    padding: 9rem 12.5% 5rem;
+    padding: 0 12.5%;
 }
 
 .heading{
@@ -146,15 +147,13 @@ span{
 .portfolio{
     width: 100%;
     min-height: 100vh;
-    background: rgb(241, 241, 241);
     display: flex;
     align-items: center;
     gap: 5%;
-    padding: 7rem 12.5% 0;
 }
 
 .portfolio-content{
-    flex: 0 0 60%;
+    flex: 0 0 55%;
 }
 
 .portfolio-content h2{
@@ -186,7 +185,7 @@ p, li{
     width: 100%;
     display: grid;
 /*    grid-template-columns: 1fr 1fr  1fr;*/
-    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    grid-template-columns: repeat(3, minmax(15rem, 1fr));
     gap: 1%;
 }
 
@@ -198,12 +197,34 @@ p, li{
   *//* Make link look/behave like button if needed *//*
   display: inline-block;
 }*/
+.btn-gold{
+    display: inline-block;
+    padding: 1.5rem 2.8rem;
+    background: linear-gradient(145deg, #ffdf00 0%, #fff29e 10%, #e6b800 25%, #d4af37 40%, #a67c00 50%, #d4af37 60%, #e6b800 75%, #fff29e 90%, #ffdf00 100%);
+    color: white;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+    border: 0.2rem solid transparent;
+    border-radius: 0.8rem;
+    font-size: var(--botton-font-size);
+    letter-spacing: 0.1rem;
+    font-weight: 600;
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-gold:hover{
+    background: linear-gradient(145deg, #f5d033 0%, #ffeb8e 15%, #e6b800 30%, #c9a227 45%, #a67c00 50%, #c9a227 55%, #e6b800 70%, #ffeb8e 85%, #f5d033 100%);
+    color: black;
+    border: 0.2rem solid black;
+}
+
 
 .btn-1{
     display: inline-block;
     padding: 1.5rem 2.8rem;
     background-color: black;
     color: white;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
     border: 0.2rem solid transparent;
     border-radius: 0.8rem;
     font-size: var(--botton-font-size);
@@ -224,6 +245,7 @@ p, li{
     padding: 1.5rem 2.8rem;
     background-color: var(--main-color);
     color: white;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
     border: 0.2rem solid black;
     border-radius: 0.8rem;
     font-size: var(--botton-font-size);
@@ -291,51 +313,6 @@ p, li{
     width: 5rem;
 }
 
-.about{
-    min-height: 100vh;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 12rem 12.5% 5rem;
-    gap: 10em;
-    background: black;
-}
-
-.about-img img{
-    position: relative;
-    width: 25vw;
-    box-shadow: 0 0 2.5rem var(--main-color),
-                0 0 5rem var(--main-color);
-    border-radius: 50%;
-}
-.about-content h1,
-.about-content h2{
-    text-align: left;
-    color: white;
-}
-
-.about-content p{
-    color: white;
-    text-align: justify;
-    margin: 2em 0 2em;
-}
-
-.about-content ul li{
-    color: white;
-    list-style: disc;
-    text-align: justify;
-    margin: 0 0 0.5em 1em;
-}
-
-.about-content ul li:nth-child(5){
-    margin: 0 0 0 1em;
-}
-
-.about-content ul li::marker{
-    color: var(--main-color);
-}
-
 .service-container {
     display: flex;
     justify-content: center;
@@ -382,15 +359,6 @@ p, li{
     margin-top: 2rem;
 }
 
-/* Portfolio section */
-.projects {
-    background: var(--second-bg-color);
-}
-
-.projects h1{
-    color: white;
-}
-
 /* Portfolio grid container */
 .project-container {
     display: grid;
@@ -429,7 +397,7 @@ p, li{
     align-items: center;
     flex-direction: column;
     text-align: center;
-    padding: 0 4rem;
+    padding: 0 2rem;
     cursor: pointer;
     transition: 0.3s ease;
 }
@@ -479,6 +447,9 @@ additional css to style the link icon on hover
 .project-info h2{
     line-height: 2;
     color: white;
+    text-shadow:    1px 1px 0 var(--main-color),
+    2px 2px 0 var(--main-color),
+    3px 3px 0 var(--main-color);
 }
 
 .project-info p{
@@ -487,11 +458,59 @@ additional css to style the link icon on hover
     -webkit-box-orient: vertical;
     overflow: hidden;
     color: white;
-    text-align: justify;
+    text-shadow:    1px 1px 0 var(--main-color),
+    2px 2px 0 var(--main-color),
+    3px 3px 0 var(--main-color);
+    text-align: center;
 }
 
 .project-info a{
     margin-top: 2rem;
+}
+
+.about{
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10em;
+}
+
+.about-img img{
+    position: relative;
+    width: 25vw;
+    box-shadow: 0 0 2.5rem var(--main-color),
+                0 0 5rem var(--main-color);
+    border-radius: 50%;
+}
+
+.about-content h1,
+.about-content h2{
+    text-align: left;
+}
+
+.about-content p{
+    text-align: justify;
+    margin: 2em 0 2em;
+}
+
+.about-content ul li{
+    list-style: disc;
+    text-align: justify;
+    margin: 0 0 0.5em 1em;
+}
+
+.about-content ul li:nth-child(5){
+    margin: 0 0 0 1em;
+}
+
+.about-content ul li::marker{
+    color: var(--main-color);
+}
+
+.contact-form{
+    padding-bottom: 5%;
 }
 
 .contact-form form{
@@ -512,7 +531,7 @@ additional css to style the link icon on hover
     padding: 1.5em;
     font-size: var(--content-font-size);
     color: black;
-    background: rgb(241, 241, 241);
+    background: rgb(215, 215, 215);
     border-radius: 0.8rem;
     margin: 1rem 0;
     resize: none;
@@ -590,7 +609,7 @@ additional css to style the link icon on hover
 
 /*
 for responsive*/
-@media (max-width: 1500px) {
+/*@media (max-width: 1500px) {
     :root{
         --botton-font-size: 1.5rem;
     }
@@ -602,11 +621,11 @@ for responsive*/
     }
 }
 
-/*@media (max-width: 1200px) {
+*//*@media (max-width: 1200px) {
     .btn-box-grid{
         grid-template-row:  repeat(3, minmax(0, 1fr));
     }
-}*/
+}*//*
 
 
 @media (max-width: 1430px) {
@@ -622,11 +641,55 @@ for responsive*/
         --heading-font-size: 4rem;
         --subheading-font-size: 4rem;
     }
+}*/
+
+@media (max-width: 1650px) {
+    :root{
+        --botton-font-size: 1.9rem;
+    }
+}@media (max-width: 1550px) {
+    :root{
+        --botton-font-size: 1.8rem;
+    }
+}@media (max-width: 1450px) {
+    :root{
+        --botton-font-size: 1.5rem;
+    }
+}@media (max-width: 1300px) {
+    :root{
+        --botton-font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 1200px) {
+    html{
+        font-size: 59.375%;
+    }
+    .btn-box-grid{
+        grid-template-columns: repeat(1, minmax(auto, 1fr));
+        padding: 0 20%;
+        gap: 3%;
+    }
+
+}
+
+@media (max-width: 966px) {
+    html{
+        font-size: 56.25%;
+    }
+
+}
+
+@media (max-width: 916px) {
+    html{
+        font-size: 53.125%;
+    }
+
 }
 
 @media (max-width: 768px) {
 
-    :root {
+    /*:root {
         --logo-font-size: 2.5rem;
         --navbar-font-size: 1.5rem;
         --botton-font-size: 1.5rem;
@@ -642,6 +705,10 @@ for responsive*/
         --content-font-size: 1.8rem;
         --footerlinks-font-size: 1.5rem;
         --copyright-font-size: 1.2rem;
+    }*/
+
+    html{
+        font-size: 50%;
     }
 
     .header{
@@ -663,7 +730,7 @@ for responsive*/
         left: 0;
         width: 100%;
         padding: 0 5%;
-        background: var(--bg-color);
+        background: rgba(0, 0, 0, 0.8);
         display: none;
     }
 
@@ -676,9 +743,16 @@ for responsive*/
         margin: 3rem 0;
     }
 
+    section{
+        padding: 0 5%;
+    }
+
     .portfolio{
         flex-direction: column-reverse;
-        padding: 7rem 5% 2rem;
+    }
+
+    .img-box{
+        padding: 5% 0 0;
     }
 
     .img-box img{
@@ -687,7 +761,6 @@ for responsive*/
 
     .about{
         flex-direction: column;
-        padding: 2rem 5%;
         gap: 0;
     }
 
@@ -695,26 +768,19 @@ for responsive*/
         width: 50vw;
     }
 
-    .services{
-        padding: 2rem 5%;
-    }
-
-    .projects{
-        padding: 2rem 5%;
-    }
-
-    .contact-form{
-        padding: 2rem 5%;
-    }
-
-    .footer{
-        padding: 1.5rem 5%;
-    }
-
-
 }
 
 @media (max-width: 1024px) {
+    .header, .navbar{
+        padding-left: 5%;
+        padding-right: 5%;
+    }
+    section{
+        padding: 0 5%;
+    }
+}
+
+@media (max-width: 1400px) {
     .project-container {
         grid-template-columns: repeat(2, 1fr);
     }
