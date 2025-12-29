@@ -31,5 +31,25 @@
 
 <script type="text/javascript" src="{{ url_for('static', filename='script.js')}}"></script>
 
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("contact-form");
+    if (!form || typeof gtag !== "function") return;
+
+    form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        gtag('event', 'contact_form_submit', {
+            event_category: 'engagement',
+            event_label: 'portfolio_contact_form'
+        });
+
+        setTimeout(() => {
+            form.submit();
+        }, 300);
+    });
+});
+</script>
+
 </body>
 </html>
