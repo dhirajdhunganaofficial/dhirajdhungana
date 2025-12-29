@@ -314,15 +314,13 @@ p, li{
 }
 
 .service-container {
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     align-items: center;
-    flex-wrap: wrap;
     gap: 2rem;
 }
 
 .service-container .service-box {
-    flex: 1 1 40rem;
     background: var(--second-bg-color);
     padding: 3rem 2rem 4rem;
     border-radius: 2rem;
@@ -352,7 +350,7 @@ p, li{
     -webkit-box-orient: vertical;
     overflow: hidden;
     color: white;
-    text-align: justify;
+    text-align: center;
 }
 
 .service-box a{
@@ -385,7 +383,7 @@ p, li{
     transform: scale(1.1)
 }
 
-/* Portfolio info overlay */
+/* Project info overlay */
 .project-box .project-info {
     position: absolute;
     bottom: 0;
@@ -402,13 +400,13 @@ p, li{
     transition: 0.3s ease;
 }
 
-/* Hover effect for portfolio info */
+/* Hover effect for project info */
 .project-box .project-info:hover {
     background: radial-gradient(rgba(0, 0, 0, 0.165), var(--main-color));
     transform: scale(1.1);
 }
 
-/* Style for links inside portfolio info */
+/* Style for links inside project info */
 .project-info a {
     display: inline-flex;
     justify-content: center;
@@ -784,10 +782,16 @@ for responsive*/
     .project-container {
         grid-template-columns: repeat(2, 1fr);
     }
+    .service-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (max-width: 600px) {
     .project-container {
+        grid-template-columns: repeat(1, 1fr);
+    }
+    .service-container {
         grid-template-columns: repeat(1, 1fr);
     }
 }
