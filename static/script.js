@@ -38,3 +38,11 @@ window.addEventListener('scroll', () => {
         }
     });
 });
+
+function hireMe(){
+    const recipient = "dhirajdhunganaofficial@gmail.com";
+    const subject = "I am Interested in Hiring You";
+    const body = "Hello Dhiraj,\n\nI’m contacting you to explore a possible collaboration.\n\nI’m interested in hiring you for a project or a job and discussing how your skills could help achieve our goals.\n\nContact Email / Number: __________\nProject / Job Detail: __________\n\nI am looking forward to connect with you.\n\nKind Regards,\n__________\n__________\n__________";
+
+    window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
