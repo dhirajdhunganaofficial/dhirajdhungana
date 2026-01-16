@@ -4,7 +4,7 @@
         <a href="https://www.linkedin.com/in/dhirajdhungana/"><i class='bx bxl-linkedin-square'></i></a>
         <a href="https://www.facebook.com/originaldhiraj"><i class='bx bxl-facebook-circle'></i></a>
         <a href="https://www.instagram.com/dh1raz/"><i class='bx bxl-instagram-alt'></i></a>
-<!--        <a href="https://www.youtube.com/@dhirajdhunganaofficial"><i class='bx bxl-youtube'></i></a>-->
+        <!--        <a href="https://www.youtube.com/@dhirajdhunganaofficial"><i class='bx bxl-youtube'></i></a>-->
         <a href="https://github.com/dhirajdhunganaofficial"><i class='bx bxl-github'></i></a>
     </div>
 
@@ -33,24 +33,29 @@
 <script type="text/javascript" src="{{ url_for('static', filename='script.js')}}"></script>
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("contact-form");
-    if (!form || typeof gtag !== "function") return;
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("contact-form");
+        if (!form || typeof gtag !== "function") return;
 
-    form.addEventListener("submit", function (e) {
-        e.preventDefault();
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
 
-        gtag('event', 'contact_form_submit', {
-            event_category: 'engagement',
-            event_label: 'portfolio_contact_form',
-            debug_mode: true
+            gtag('event', 'contact_form_submit', {
+                event_category: 'engagement',
+                event_label: 'portfolio_contact_form',
+                debug_mode: true
+            });
+
+            setTimeout(() => {
+                form.submit();
+            }, 300);
         });
-
-        setTimeout(() => {
-            form.submit();
-        }, 300);
     });
-});
+
+    // Prevent form resubmission when user refreshes page
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
 </script>
 
 </body>
