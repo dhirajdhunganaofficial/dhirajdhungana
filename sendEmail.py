@@ -6,7 +6,7 @@ from email.mime.multipart import MIMEMultipart
 def sendEmail(name,email,phoneNumber,subject,message):
     # -------- 1. Email Login Details --------
     your_email = "dhirajdhunganaofficial@gmail.com"
-    your_app_password = "olhdfdeerxbikfzg"  # NOT your Gmail password!
+    your_app_password = "twbwpuawatnnzqyg"  # NOT your Gmail password!
 
     # -------- 2. Email Content --------
     contact_name = name
