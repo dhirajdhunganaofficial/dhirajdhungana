@@ -443,7 +443,7 @@ additional css to style the link icon on hover
 }
 
 .project-info h2{
-    line-height: 2;
+    margin-bottom: 2.25rem;
     color: white;
     text-shadow:    1px 1px 0 var(--main-color),
     2px 2px 0 var(--main-color),
@@ -579,7 +579,6 @@ additional css to style the link icon on hover
 }
 
 .timeline-content h3 {
-    font-size: 20px;
     color: white;
     margin: 0 0 10px;
     font-weight: 500;
