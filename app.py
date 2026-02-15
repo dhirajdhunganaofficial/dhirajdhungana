@@ -8,6 +8,10 @@ app = Flask(__name__)
 def index():
     return render_template('index.html', title='Dhiraj Dhungana', alert=False)
 
+@app.route('/blogs')
+def blogs():
+    return render_template('blogs.html', title='Dhungana Dhungana - Blogs')
+
 @app.route('/oldSite')
 def oldSite():
     return render_template('oldSite.html')

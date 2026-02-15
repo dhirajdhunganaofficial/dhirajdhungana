@@ -46,3 +46,21 @@ function hireMe(){
 
     window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
+
+var readMore = document.getElementsByClassName("readMore");
+
+for (let button of readMore){
+    button.addEventListener('click', function(){
+        const element = button.closest('div');
+        console.log(element);
+        console.log(element.getElementsByTagName("p")[0]);
+        p = element.getElementsByTagName("p")[0];
+        if (p.classList.contains("expanded")){
+            element.getElementsByTagName("p")[0].classList.remove("expanded");
+            element.getElementsByTagName("button")[0].textContent = "Real More";
+        }else{
+            element.getElementsByTagName("p")[0].classList.add("expanded");
+            element.getElementsByTagName("button")[0].textContent = "Real Less";
+        }
+    });
+}

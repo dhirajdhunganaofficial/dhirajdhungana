@@ -316,17 +316,18 @@ p, li{
 .service-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    align-items: center;
+    align-items: start;
     gap: 2rem;
 }
 
 .service-container .service-box {
     background: var(--second-bg-color);
-    padding: 3rem 2rem 4rem;
+    padding: 3rem 2rem;
     border-radius: 2rem;
     text-align: center;
     border: 0.2rem solid var(--bg-color);
     transition: 0.5s ease;
+    height: auto;
 }
 
 .service-container .service-box:hover {
@@ -337,6 +338,8 @@ p, li{
 .service-box i{
     font-size: var(--servicesicons-font-size);
     color: var(--main-color);
+    background: none;
+    font-size: 6rem;
 }
 
 .service-box h2{
@@ -344,16 +347,31 @@ p, li{
     color: white;
 }
 
-.service-box p{
+.readMoreHeading{
+    margin-left: 1rem;
+}
+
+.service-box > p{
     display: -webkit-box;
     -webkit-line-clamp: 7;
     -webkit-box-orient: vertical;
     overflow: hidden;
     color: white;
-    text-align: center;
+    text-align: justify;
 }
 
-.service-box a{
+.service-box > p.expanded {
+    -webkit-line-clamp: unset;
+    overflow: visible;
+    display: block;
+}
+
+.service-box > p > iframe{
+    width: 100%;
+    aspect-ratio: 16 / 9;
+}
+
+.service-box button{
     margin-top: 2rem;
 }
 
@@ -576,6 +594,17 @@ additional css to style the link icon on hover
 .timeline-content:hover {
     transform: scale(1.05);
     box-shadow: 0 0 25px var(--main-color);
+}
+
+.timeline-content span{
+    text-shadow: 0 0 25px var(--main-color),
+                0 0 50px var(--main-color);
+}
+
+.timeline-content h2 {
+    color: white;
+    margin: 0 0 10px;
+    font-weight: 500;
 }
 
 .timeline-content h3 {
