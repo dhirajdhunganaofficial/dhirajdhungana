@@ -169,17 +169,91 @@ p, li{
     font-size: var(--content-font-size);
 }
 
+.text-animation{
+    min-width: 28rem;
+}
+
+.text-animation span{
+    position: relative;
+}
+
+.text-animation span::before{
+    content: "Web Developer";
+    color: var(--main-color);
+    animation: words 20s infinite;
+}
+
+.text-animation span:after {
+    content: "";
+    background-color: rgb(241, 241, 241);
+    position: absolute;
+    width: calc(100% + 8px);
+    height: 100%;
+    border-left: 3px solid var(--bg-color);
+    right: -8px;
+    animation: cursor 0.6s infinite, typing 20s steps(14) infinite;
+}
+
+@keyframes cursor {
+    to {
+        border-left: 2px solid var(--main-color);
+    }
+}
+
+@keyframes words {
+    0%,
+    20% {
+        content: "Web Developer";
+    }
+    21%,
+    40% {
+        content: "Content Creator";
+    }
+    41%,
+    60% {
+        content: "Bartender";
+    }
+    61%,
+    80% {
+        content: "UI / UX Designer";
+    }
+    81%,
+    100% {
+        content: "Web Designer";
+    }
+}
+
+@keyframes typing {
+    10%,
+    15%,
+    30%,
+    35%,
+    50%,
+    55%,
+    70%,
+    75%,
+    90%,
+    95% {
+        width: 0;
+    }
+
+    5%,
+    20%,
+    25%,
+    40%,
+    45%,
+    60%,
+    65%,
+    80%,
+    85% {
+        width: calc(100% + 8px);
+    }
+}
+
 .portfolio-content p{
     text-align: justify;
     margin: 2.5rem 0 3rem;
 }
-
-/*.btn-box{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    gap: 2em;
-}*/
 
 .btn-box-grid{
     width: 100%;
@@ -189,14 +263,6 @@ p, li{
     gap: 1%;
 }
 
-/*.btn-box-grid > * {
-  *//* Apply to ALL direct children *//*
-  width: 100%;
-  box-sizing: border-box;
-
-  *//* Make link look/behave like button if needed *//*
-  display: inline-block;
-}*/
 .btn-gold{
     display: inline-block;
     padding: 1.5rem 2.8rem;
@@ -836,5 +902,17 @@ additional css to style the link icon on hover
     }
     .service-container {
         grid-template-columns: repeat(1, 1fr);
+    }
+}@media (min-width: 320px){
+    .text-animation{
+        font-size: 27px;
+    }
+}@media (min-width: 375px){
+    .text-animation{
+        font-size: 32px;
+    }
+}@media (min-width: 425px){
+    .text-animation{
+        font-size: 37px;
     }
 }
