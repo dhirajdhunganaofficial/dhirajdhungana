@@ -23,7 +23,12 @@ def notifyAboutContactInformation():
     phoneNumber=request.form['Phone Number']
     subject=request.form['Subject']
     message=request.form['Message']
-    sendEmail.sendEmail(name,email,phoneNumber,subject,message)
+    botField = request.form['BotChaiyena']
+    print("botField")
+    print(botField)
+    status = sendEmail.sendEmail(botField,name,email,phoneNumber,subject,message)
+    print("status")
+    print(status)
     # return render_template('index.html', title='Dhiraj Dhungana', alert=True)
     return redirect(url_for('index'))
 

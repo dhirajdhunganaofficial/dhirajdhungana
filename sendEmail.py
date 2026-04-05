@@ -3,7 +3,11 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
 
-def sendEmail(name,email,phoneNumber,subject,message):
+def sendEmail(botField,name,email,phoneNumber,subject,message):
+
+    if botField and botField.strip():
+        return "Email not sent! Bot detected successfully!"
+
     # -------- 1. Email Login Details --------
     your_email = "dhirajdhunganaofficial@gmail.com"
     your_app_password = "twbwpuawatnnzqyg"  # NOT your Gmail password!
