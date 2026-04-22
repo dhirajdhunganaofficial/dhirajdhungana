@@ -26,10 +26,7 @@ def notifyAboutContactInformation():
     botField = request.form['BotChaiyena']
     print("botField")
     print(botField)
-    status = sendEmail.sendEmail(botField,name,email,phoneNumber,subject,message)
-    print("status")
-    print(status)
-    # return render_template('index.html', title='Dhiraj Dhungana', alert=True)
+    sendEmail.sendEmail(botField,name,email,phoneNumber,subject,message)
     return redirect(url_for('index'))
 
 @app.route('/qrCode')

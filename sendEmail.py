@@ -2,15 +2,48 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
+import boto3
+from botocore.exceptions import ClientError
+import json
+
+def get_secret():
+
+    secret_name = "email/smtp-credentials"
+    region_name = "ap-northeast-1"
+
+    # Create a Secrets Manager client
+    session = boto3.session.Session()
+    client = session.client(
+        service_name='secretsmanager',
+        region_name=region_name
+    )
+
+    try:
+        get_secret_value_response = client.get_secret_value(
+            SecretId=secret_name
+        )
+    except ClientError as e:
+        # For a list of exceptions thrown, see
+        # https://docs.aws.amazon.com/secretsmanager/latest/apireference/API_GetSecretValue.html
+        raise e
+
+    secret = get_secret_value_response['SecretString']
+    secret_Dictionary =  json.loads(secret)
+    return secret_Dictionary['email'], secret_Dictionary['password']
+
+
 
 def sendEmail(botField,name,email,phoneNumber,subject,message):
 
     if botField and botField.strip():
         return "Email not sent! Bot detected successfully!"
 
+    email, password = get_secret()
+    print(email, password)
+
     # -------- 1. Email Login Details --------
-    your_email = "dhirajdhunganaofficial@gmail.com"
-    your_app_password = "twbwpuawatnnzqyg"  # NOT your Gmail password!
+    your_email = email
+    your_app_password = password  # NOT your Gmail password!
 
     # -------- 2. Email Content --------
     contact_name = name
