@@ -746,6 +746,10 @@ height: 0.75em;
         gap: 2em;
     }
 
+    .hero-content p {
+        max-width: 75%;
+    }
+
     .all-featured, .all-latest, .maps-and-join, .secondary-featured {
         gap: 1em;
     }
