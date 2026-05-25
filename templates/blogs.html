@@ -1,4 +1,28 @@
 {% include 'commonHeadPart.html' %}
+<link href="{{ url_for('static', filename='blogs.css')}}" rel="stylesheet">
+
+<style>
+    .hero{
+        background-image: url('{{ url_for('static', filename='img/blogs/hero/manang.jpg') }}');
+    }
+
+    .primary-featured{
+        background-image: url('{{ url_for('static', filename='img/blogs/shey_phoksundo/43-2560.webp') }}');
+    }
+
+    .blog-image{
+        background-image: url('{{ url_for('static', filename='img/blogs/shey_phoksundo/43-2560.webp') }}');
+    }
+
+    .sfc1{
+        background-image: url('{{ url_for('static', filename='img/blogs/hero/dhiraj.jpg') }}');
+    }
+
+    .sfc2{
+        background-image: url('{{ url_for('static', filename='img/blogs/hero/babin.jpg') }}');
+    }
+
+</style>
 
 </head>
 
@@ -7,16 +31,119 @@
 {% include 'blogsHeader.html' %}
 
 <section class="travel" id="travel">
-    <p>This is travel blogs.</p>
-    <p>Under-Development.</p>
-</section>
-<section class="tech" id="tech">
-    <p>This is tech blogs.</p>
-    <p>Under-Development.</p>
-</section>
-<section class="bartender" id="bartender">
-    <p>This is bartending blogs.</p>
-    <p>Under-Development.</p>
+    <div class="hero">
+        <div class="hero-content">
+
+            <h1 class="hero-heading main-heading">
+                Where Journeys<br>
+                <span>Become Stories.</span>
+            </h1>
+
+            <p class="body-text">
+                Exploring the world, one story at a time. Real experiences. Honest stories.
+            </p>
+
+            <a href="#featured" class="btn small-text">Explore Stories&nbsp&nbsp&nbsp→</a>
+
+            <p class="small-text">
+                <i class='bx bx-current-location location-icon'></i>&nbsp&nbspCurrently exploring:
+                <strong class="sub-heading">Tasmania</strong>
+            </p>
+        </div>
+    </div>
+
+    <div class="blog-main-divs" id="featured">
+        <div class="title">
+            <h2 class="section-heading">Featured Stories</h2>
+            <a href="#" class="body-text">View all&nbsp&nbsp&nbsp→</a>
+        </div>
+
+        <div class="all-featured">
+            <div class="primary-featured">
+                <div class="featured-post-information">
+                    <a href="#" class="badge small-text">NEPAL</a>
+                    <h3 class="sub-heading">{{ primaryFeaturedBlog.title }}</h3>
+                    <p class="body-text faint-white">{{ primaryFeaturedBlog.content }}</p>
+                    <a href="newblog/{{ primaryFeaturedBlog.slug }}" class="read-featured-story small-text faint-white">Read
+                        Story&nbsp&nbsp&nbsp→</a>
+                </div>
+            </div>
+            <div class="secondary-featured">
+                <div class="secondary-featured-child sfc1">
+                    <div class="featured-post-information">
+                        <a href="#" class="badge small-text">NEPAL</a>
+                        <h3 class="sub-heading">{{ secondaryFeaturedBlog[0].title }}</h3>
+                        <p class="body-text faint-white">{{ secondaryFeaturedBlog[0].content }}</p>
+                        <a href="newblog/{{ secondaryFeaturedBlog[0].slug }}" class="read-featured-story small-text faint-white">Read
+                            Story&nbsp&nbsp&nbsp→</a>
+                    </div>
+                </div>
+                <div class="secondary-featured-child sfc2">
+                    <div class="featured-post-information">
+                        <a href="#" class="badge small-text">NEPAL</a>
+                        <h3 class="sub-heading">{{ secondaryFeaturedBlog[1].title }}</h3>
+                        <p class="body-text faint-white">{{ secondaryFeaturedBlog[1].content }}</p>
+                        <a href="newblog/{{ secondaryFeaturedBlog[1].slug }}" class="read-featured-story small-text faint-white">Read
+                            Story&nbsp&nbsp&nbsp→</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="blog-main-divs" id="latest">
+        <div class="title">
+            <h2 class="section-heading">Latest Stories</h2>
+            <a href="#" class="body-text">View all&nbsp&nbsp&nbsp→</a>
+        </div>
+
+        <div class="all-latest">
+            {% for blog in blogs %}
+                <a class="latest-blog" href="newblog/{{ blog.slug }}">
+                    <div class="blog-image">
+                        <span class="badge small-text">NEPAL</span>
+                    </div>
+                    <div class="blog-information">
+                        <h3 class="sub-heading"> {{ blog.title }} </h3>
+                        <p class="body-text faint-black"> {{ blog.content }} </p>
+                        <p class="small-text faint-black"><i class='bx bx-calendar'></i> {{ blog.created_at }} </p>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="blog-main-divs">
+        <div class="maps-and-join">
+            <div class="map">
+                <h2 class="section-heading">Where I've Been</h2>
+                <div class="map-components">
+                    <img src="{{ url_for('static', filename='img/maps/worldMap.svg') }}">
+                    <svg class="travel-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
+                        <path d="M69.5,49.5 Q78,40 87.5,66.25" class="flight-path"/>
+                    </svg>
+                    <svg class="travel-lines" viewBox="0 0 100 100" preserveAspectRatio="none">
+                        <path d="M87.5,66.25 Q100,69 86.5,71" class="flight-path"/>
+                    </svg>
+
+
+                    <div class="marker nepal"></div>
+                    <div class="marker australia"></div>
+                    <div class="marker tasmania"></div>
+                </div>
+            </div>
+            <div class="join">
+                <span><i class='bx bxs-bell-ring main-heading'></i></span>
+                <h2 class="section-heading">Join my Journey</h2>
+                <p class="body-text">Get travel stories, tips and behind the scenes in your inbox.</p>
+                <form>
+                    <input type="email" placeholder="Your email address">
+                    <button type="button">Subscribe</button>
+                </form>
+                <p class="small-text">No spam. Unsubscribe anytime.</p>
+            </div>
+        </div>
+    </div>
 </section>
 
 {% include 'blogsFooter.html' %}

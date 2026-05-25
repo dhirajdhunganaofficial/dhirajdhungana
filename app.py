@@ -1,8 +1,18 @@
 from flask import Flask, render_template, request, redirect, url_for
+from datetime import datetime
+
+from flask_migrate import Migrate
+from config import Config
 
 import sendEmail,createQRCode
 
 app = Flask(__name__)
+app.config.from_object(Config)
+from extensions import db
+db.init_app(app)
+migrate = Migrate(app, db)
+
+from models import Blog, Image, ImageVariant
 
 @app.route('/')
 def index():
@@ -10,7 +20,79 @@ def index():
 
 @app.route('/blogs')
 def blogs():
-    return render_template('blogs.html', title='Dhungana Dhungana - Blogs')
+    blogs = Blog.query.filter_by(featured = False).all()
+    featuredBlog = Blog.query.filter_by(featured = True).all()
+    print(featuredBlog)
+
+    primaryFeaturedBlog = None
+    secondaryFeaturedBlog = []
+
+    for blog in featuredBlog:
+        if (blog.featured_type == 'primary'):
+            primaryFeaturedBlog = blog
+        else:
+            secondaryFeaturedBlog.append(blog)
+
+    for blog in blogs:
+        original_date = blog.created_at
+        date_obj = datetime.strptime(str(original_date), "%Y-%m-%d %H:%M:%S")
+        formatted_date = date_obj.strftime("%B %d, %Y")
+        blog.created_at = formatted_date
+
+    return render_template('blogs.html', title='Dhungana Dhungana - Blogs', blogs=blogs, primaryFeaturedBlog=primaryFeaturedBlog, secondaryFeaturedBlog=secondaryFeaturedBlog)
+
+@app.route('/newblog/<slug>')
+def newblog(slug):
+    blog = Blog.query.filter_by(slug=slug).first()
+
+    print(blog)
+
+    story_images = Image.query.filter_by(
+        blog_id=blog.id,
+        type="story"
+    ).all()
+
+    gallery_images = Image.query.filter_by(
+        blog_id=blog.id,
+        type="gallery"
+    ).all()
+
+    thumbnail = next(
+        (
+            image
+            for image in blog.images
+            if image.is_thumbnail
+        ),
+        None
+    )
+
+    return render_template('newblog.html', title=blog.title, blog=blog, thumbnail=thumbnail, story_images=story_images, gallery_images=gallery_images)
+
+@app.route('/travel_blog/<slug>')
+def new_blog(slug):
+
+    blog = Blog.query.filter_by(slug=slug).first()
+
+    story_images = Image.query.filter_by(
+        blog_id=blog.id,
+        type="story"
+    ).all()
+
+    gallery_images = Image.query.filter_by(
+        blog_id=blog.id,
+        type="gallery"
+    ).all()
+
+    thumbnail = next(
+        (
+            image
+            for image in blog.images
+            if image.is_thumbnail
+        ),
+        None
+    )
+
+    return render_template('travel_blog.html', title=blog.title, blog=blog, thumbnail=thumbnail, story_images=story_images, gallery_images=gallery_images)
 
 @app.route('/oldSite')
 def oldSite():

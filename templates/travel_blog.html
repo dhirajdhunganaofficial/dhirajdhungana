@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>{{ blog.title }}</title>
+
+    <style>
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .hero{
+
+    height: 70vh;
+    width: 100%;
+
+    margin-bottom: 2rem;
+
+    background-image: url("{{ thumbnail.variants[-1].image_url }}");
+    background-size: cover;
+    background-position: center;
+
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    color: white;
+}
+
+/* dark overlay */
+.hero::before{
+
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background: linear-gradient(to right, rgba(0,0,0,0.45), rgba(0,0,0,0));
+}
+
+/* content wrapper */
+.hero-content{
+
+    position: relative;
+    z-index: 2;
+
+    max-width: 700px;
+    padding: 60px;
+}
+
+/* small badge */
+.badge{
+
+    display: inline-block;
+
+    padding: 6px 12px;
+
+    border: 1px solid rgba(255,255,255,0.4);
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 20px;
+}
+
+/* heading styles */
+.hero h1{
+
+    font-size: 64px;
+    font-weight: 800;
+    line-height: 1.1;
+
+    margin-bottom: 15px;
+}
+
+.hero h1 span{
+
+    font-size: 28px;
+    font-weight: 400;
+
+    display: block;
+
+    margin-bottom: 10px;
+}
+
+/* paragraph */
+.hero p{
+
+    font-size: 16px;
+    line-height: 1.6;
+
+    max-width: 500px;
+
+    opacity: 0.9;
+
+    margin-bottom: 30px;
+}
+
+/* button */
+.btn{
+
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 12px 20px;
+
+    border-radius: 30px;
+
+    border: none;
+
+    background: white;
+    color: black;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    text-decoration: none;
+}
+
+/* bottom right scroll hint */
+.scroll{
+
+    position: absolute;
+    right: 40px;
+    bottom: 30px;
+
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    font-size: 13px;
+
+    opacity: 0.8;
+
+    z-index: 2;
+}
+
+.scroll-circle{
+
+    width: 30px;
+    height: 30px;
+
+    border: 1px solid rgba(255,255,255,0.5);
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* responsive */
+@media(max-width:768px){
+
+    .hero-content{
+        padding: 30px;
+    }
+
+    .hero h1{
+        font-size: 40px;
+    }
+
+    .hero h1 span{
+        font-size: 20px;
+    }
+}
+
+        body{
+            font-family: Arial, sans-serif;
+            background: #ffffff;
+        }
+
+        .gallery{
+
+            display: grid;
+
+            grid-template-columns:
+            repeat(
+                auto-fill,
+                minmax(300px, 1fr)
+            );
+
+            gap: 16px;
+
+            grid-auto-rows: 10px;
+
+            grid-auto-flow: dense;
+        }
+
+        .card{
+
+            border-radius: 12px;
+
+            overflow: hidden;
+        }
+
+        .card img{
+
+            width: 100%;
+
+            display: block;
+
+            border-radius: 12px;
+        }
+
+        .caption{
+
+            margin-top: 8px;
+
+            font-size: 14px;
+
+            color: #444;
+
+            line-height: 1.5;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="badge">NEPAL</div>
+
+        <h1>
+            <span>Exploring the Magic of</span>
+            {{ blog.title }}
+        </h1>
+
+        <p>
+            {{ blog.content }}
+        </p>
+
+        <a href="#" class="btn">▶ Watch Video</a>
+
+    </div>
+
+    <div class="scroll">
+        <div class="scroll-circle">↓</div>
+        Scroll Down
+    </div>
+
+</section>
+
+<div class="gallery">
+
+    {% for image in gallery_images %}
+
+    <div class="card">
+
+        <img
+
+                src="{{ image.variants[-1].image_url }}"
+
+                srcset="
+                    {% for variant in image.variants %}
+                        {{ variant.image_url }} {{ variant.width }}w,
+                    {% endfor %}
+                    "
+
+                sizes="
+                    (max-width:768px) 100vw,
+                    (max-width:1200px) 50vw,
+                    33vw
+                    "
+
+                alt="{{ image.alt_text }}"
+
+                loading="lazy"
+        >
+
+        <p class="caption">
+            {{ image.caption }}
+        </p>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+<div class="gallery">
+
+    {% for image in story_images %}
+
+    <div class="card">
+
+        <img
+
+                src="{{ image.variants[-1].image_url }}"
+
+                srcset="
+                    {% for variant in image.variants %}
+                        {{ variant.image_url }} {{ variant.width }}w,
+                    {% endfor %}
+                    "
+
+                sizes="
+                    (max-width:768px) 100vw,
+                    (max-width:1200px) 50vw,
+                    33vw
+                    "
+
+                alt="{{ image.alt_text }}"
+
+                loading="lazy"
+        >
+
+        <p class="caption">
+            {{ image.caption }}
+        </p>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+
+
+<script>
+
+window.addEventListener(
+    "load",
+    () => {
+
+        const galleries =
+        document.querySelectorAll(".gallery");
+
+        const resizeGridItem =
+        (item) => {
+
+            const rowHeight = 10;
+
+            const rowGap = 16;
+
+            const imageHeight =
+            item.querySelector("img")
+            .getBoundingClientRect()
+            .height;
+
+            const captionHeight =
+            item.querySelector(".caption")
+            .getBoundingClientRect()
+            .height;
+
+            const totalHeight =
+            imageHeight + captionHeight;
+
+            const rowSpan =
+            Math.ceil(
+                (
+                    totalHeight + rowGap
+                )
+                /
+                (
+                    rowHeight + rowGap
+                )
+            );
+
+            item.style.gridRowEnd =
+            `span ${rowSpan}`;
+        };
+
+        galleries.forEach((gallery) => {
+
+            const allCards =
+            gallery.querySelectorAll(".card");
+
+            allCards.forEach((item) => {
+
+                resizeGridItem(item);
+
+                const image =
+                item.querySelector("img");
+
+                image.addEventListener(
+                    "load",
+                    () => resizeGridItem(item)
+                );
+
+            });
+
+            window.addEventListener(
+                "resize",
+                () => {
+
+                    allCards.forEach((item) => {
+                        resizeGridItem(item);
+                    });
+
+                }
+            );
+
+        });
+
+    }
+);
+
+</script>
+
+</body>
+</html>

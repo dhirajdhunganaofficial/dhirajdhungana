@@ -1,0 +1,505 @@
+{% include 'commonHeadPart.html' %}
+<link href="{{ url_for('static', filename='newBlog.css')}}" rel="stylesheet">
+
+<style>
+    .hero{
+
+        min-height: 70vh;
+        width: 100%;
+
+        margin-bottom: 1rem;
+
+        background-image: url("{{ thumbnail.variants[-1].image_url }}");
+        background-size: cover;
+        background-position: center;
+
+        position: relative;
+
+        display: flex;
+        align-items: center;
+
+        color: white;
+    }
+
+    .hero-section{
+        min-height: 70vh;
+        padding: 0;
+        position: relative;
+    }
+
+</style>
+
+</head>
+
+<body>
+
+{% include 'blogsHeader.html' %}
+
+<section class="hero-section">
+    <div class="hero">
+        <div class="hero-content">
+
+            <div class="badge"><a href="#gallary">NEPAL</a></div>
+
+            <h1 class="heading">
+                <span class="subHeading">Exploring the Magic of</span>
+                {{ blog.title }}
+            </h1>
+
+            <p class="subSubHeading">
+                {{ blog.content }}
+            </p>
+
+            <a href="#story" class="btn">▶ Watch Video</a>
+
+        </div>
+
+        <div class="scroll">
+            <div class="scroll-circle">↓</div>
+            Scroll Down
+        </div>
+    </div>
+    <div class="navigation-to-gallery">
+        <h1 class="subSubHeading">Photo Gallery</h1>
+        <p>Moments from Shey Phoksundo</p>
+        <i class='bx bxs-hand-down'></i>
+    </div>
+</section>
+
+<section class="allImages" id="gallary">
+    <div class="gallery">
+
+        {% for image in gallery_images %}
+
+        <div class="card">
+
+            <img
+
+                    src="{{ image.variants[-1].image_url }}"
+
+                    srcset="
+                    {% for variant in image.variants %}
+                        {{ variant.image_url }} {{ variant.width }}w,
+                    {% endfor %}
+                    "
+
+                    sizes="
+                    (max-width:768px) 100vw,
+                    (max-width:1200px) 50vw,
+                    33vw
+                    "
+
+                    alt="{{ image.alt_text }}"
+
+                    loading="lazy"
+            >
+
+            <p class="caption">
+                {{ image.caption }}
+            </p>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+    <div class="navigation-to-gallery">
+        <h1 class="subSubHeading">The Trekkers</h1>
+        <p>Says from the Trekkers</p>
+        <i class='bx bxs-hand-down'></i>
+    </div>
+</section>
+
+<section class="allImages" id="story">
+    <div class="gallery">
+
+        {% for image in story_images %}
+
+        <div class="card">
+
+            <img
+
+                    src="{{ image.variants[-1].image_url }}"
+
+                    srcset="
+                    {% for variant in image.variants %}
+                        {{ variant.image_url }} {{ variant.width }}w,
+                    {% endfor %}
+                    "
+
+                    sizes="
+                    (max-width:768px) 100vw,
+                    (max-width:1200px) 50vw,
+                    33vw
+                    "
+
+                    alt="{{ image.alt_text }}"
+
+                    loading="lazy"
+            >
+
+            <p class="caption">
+                {{ image.caption }}
+            </p>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+</section>
+
+
+<div class="lightbox">
+
+    <button class="lightbox-close">
+        &times;
+    </button>
+
+    <button class="lightbox-prev">
+        &#10094;
+    </button>
+
+    <img class="lightbox-image">
+
+    <button class="lightbox-next">
+        &#10095;
+    </button>
+
+    <p class="lightbox-caption"></p>
+
+    <div class="lightbox-counter"></div>
+
+</div>
+
+<script>
+
+    window.addEventListener(
+        "load",
+        () => {
+
+            const galleries =
+            document.querySelectorAll(".gallery");
+
+            const resizeGridItem =
+            (item) => {
+
+                const rowHeight = 10;
+
+                const rowGap = 16;
+
+                const imageHeight =
+                item.querySelector("img")
+                .getBoundingClientRect()
+                .height;
+
+                const captionHeight =
+                item.querySelector(".caption")
+                .getBoundingClientRect()
+                .height;
+
+                const totalHeight =
+                imageHeight + captionHeight;
+
+                const rowSpan =
+                Math.ceil(
+                    (
+                        totalHeight + rowGap
+                    )
+                    /
+                    (
+                        rowHeight + rowGap
+                    )
+                );
+
+                item.style.gridRowEnd =
+                `span ${rowSpan}`;
+            };
+
+            galleries.forEach((gallery) => {
+
+                const allCards =
+                gallery.querySelectorAll(".card");
+
+                allCards.forEach((item) => {
+
+                    resizeGridItem(item);
+
+                    const image =
+                    item.querySelector("img");
+
+                    image.addEventListener(
+                        "load",
+                        () => resizeGridItem(item)
+                    );
+
+                });
+
+                window.addEventListener(
+                    "resize",
+                    () => {
+
+                        allCards.forEach((item) => {
+                            resizeGridItem(item);
+                        });
+
+                    }
+                );
+
+            });
+
+        }
+    );
+
+    const allGalleryCards =
+    document.querySelectorAll(".gallery .card");
+
+    const lightbox =
+    document.querySelector(".lightbox");
+
+    const lightboxImage =
+    document.querySelector(".lightbox-image");
+
+    const lightboxCaption =
+    document.querySelector(".lightbox-caption");
+
+    const lightboxClose =
+    document.querySelector(".lightbox-close");
+
+    const lightboxPrev =
+    document.querySelector(".lightbox-prev");
+
+    const lightboxNext =
+    document.querySelector(".lightbox-next");
+
+    const lightboxCounter =
+    document.querySelector(".lightbox-counter");
+
+    let currentIndex = 0;
+
+    const imagesData =
+    [...allGalleryCards].map((card) => ({
+
+        src:
+        card.querySelector("img").src,
+
+        caption:
+        card.querySelector(".caption").textContent
+
+    }));
+
+    const openLightbox =
+    (index) => {
+
+        currentIndex = index;
+
+        lightbox.classList.add("active");
+
+        document.body.classList.add("lightbox-open");
+
+        updateLightbox();
+
+    };
+
+    const closeLightbox =
+    () => {
+
+        lightbox.classList.remove("active");
+
+        document.body.classList.remove("lightbox-open");
+
+    };
+
+    const updateLightbox =
+    () => {
+
+        lightboxImage.src =
+        imagesData[currentIndex].src;
+
+        lightboxCaption.textContent =
+        imagesData[currentIndex].caption;
+
+        lightboxCounter.textContent =
+        `${currentIndex + 1} / ${imagesData.length}`;
+
+    };
+
+    const showNext =
+    () => {
+
+        currentIndex =
+        (currentIndex + 1)
+        %
+        imagesData.length;
+
+        updateLightbox();
+
+    };
+
+    const showPrev =
+    () => {
+
+        currentIndex =
+        (
+            currentIndex - 1
+            +
+            imagesData.length
+        )
+        %
+        imagesData.length;
+
+        updateLightbox();
+
+    };
+
+    allGalleryCards.forEach((card, index) => {
+
+        const image =
+        card.querySelector("img");
+
+        image.style.cursor = "pointer";
+
+        image.addEventListener(
+            "click",
+            () => {
+
+                openLightbox(index);
+
+            }
+        );
+
+    });
+
+    lightboxClose.addEventListener(
+        "click",
+        closeLightbox
+    );
+
+    lightboxNext.addEventListener(
+        "click",
+        showNext
+    );
+
+    lightboxPrev.addEventListener(
+        "click",
+        showPrev
+    );
+
+    lightbox.addEventListener(
+        "click",
+        (e) => {
+
+            if(e.target === lightbox){
+
+                closeLightbox();
+
+            }
+
+        }
+    );
+
+    document.addEventListener(
+        "keydown",
+        (e) => {
+
+            if(!lightbox.classList.contains("active")) return;
+
+            if(e.key === "Escape"){
+
+                closeLightbox();
+
+            }
+
+            if(e.key === "ArrowRight"){
+
+                showNext();
+
+            }
+
+            if(e.key === "ArrowLeft"){
+
+                showPrev();
+
+            }
+
+        }
+    );
+
+    /* SWIPE SUPPORT */
+
+    let touchStartX = 0;
+
+    let touchEndX = 0;
+
+    lightbox.addEventListener(
+        "touchstart",
+        (e) => {
+
+            touchStartX =
+            e.changedTouches[0].screenX;
+
+        }
+    );
+
+    lightbox.addEventListener(
+        "touchend",
+        (e) => {
+
+            touchEndX =
+            e.changedTouches[0].screenX;
+
+            if(touchEndX < touchStartX - 50){
+
+                showNext();
+
+            }
+
+            if(touchEndX > touchStartX + 50){
+
+                showPrev();
+
+            }
+
+        }
+    );
+
+    /* IMAGE ZOOM */
+
+    let zoomed = false;
+
+    lightboxImage.addEventListener(
+        "click",
+        (e) => {
+
+            e.stopPropagation();
+
+            if(!zoomed){
+
+                lightboxImage.style.transform =
+                "scale(1.5)";
+
+                lightboxImage.style.cursor =
+                "zoom-out";
+
+                zoomed = true;
+
+            }
+
+            else{
+
+                lightboxImage.style.transform =
+                "scale(1)";
+
+                lightboxImage.style.cursor =
+                "zoom-in";
+
+                zoomed = false;
+
+            }
+
+        }
+    );
+
+</script>
+
+{% include 'footer.html' %}

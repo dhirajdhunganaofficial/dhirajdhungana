@@ -15,6 +15,7 @@
     --second-bg-color: #17191b;
     --text-color: #fff;
     --main-color: orangered;
+    --main-color-rgb: 255,69,0;
 
     --logo-font-size: 4rem;
     --navbar-font-size: 2rem;
@@ -69,7 +70,7 @@ section{
     top: 0;
     left: 0;
     width: 100%;
-    padding: 3.5rem 12.5%;
+    padding: 2.5rem 12.5%;
     background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(1rem);
     display: flex;
@@ -368,16 +369,18 @@ p, li{
 }
 
 ::-webkit-scrollbar{
-    width: 1.5rem;
+    width: 0.5rem;
+    height: 0.5rem;
 }
 
 ::-webkit-scrollbar-thumb{
     background-color: var(--main-color);
+    border-radius: 2rem;  /* Rounded corners on track */
 }
 
 ::-webkit-scrollbar-track{
-    background-color: rgba(0, 0, 0, 0.6);
-    width: 5rem;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 2rem;  /* Rounded corners on track */
 }
 
 .service-container {
