@@ -339,7 +339,7 @@ body.lightbox-open{
     .lightbox-caption{
         font-size: 14px;
     }
-}@media(max-width:425px){
+}@media(max-width:500px){
     .hero h1 span:nth-child(2) {
         font-size: 40px;
     }
