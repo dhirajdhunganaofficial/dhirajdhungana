@@ -3,21 +3,15 @@
 
 <style>
     .hero{
-
         min-height: 70vh;
         width: 100%;
-
         margin-bottom: 1rem;
-
         background-image: url("{{ thumbnail.variants[-1].image_url }}");
         background-size: cover;
         background-position: center;
-
         position: relative;
-
         display: flex;
         align-items: center;
-
         color: white;
     }
 
@@ -43,14 +37,14 @@
 
             <h1 class="heading">
                 <span class="subHeading">Exploring the Magic of</span>
-                {{ blog.title }}
+                <span style="color: var(--main-color);">{{ blog.title }}</span>
             </h1>
 
             <p class="subSubHeading">
                 {{ blog.content }}
             </p>
 
-            <a href="#story" class="btn">▶ Watch Video</a>
+            <a href="#story" class="btn"><i class='bx bxs-video'></i>Watch Video</a>
 
         </div>
 
@@ -186,7 +180,12 @@
 
                 const rowHeight = 10;
 
-                const rowGap = 16;
+                const rowGap =
+                parseInt(
+                    window.getComputedStyle(
+                        item.parentElement
+                    ).getPropertyValue("gap")
+                );
 
                 const imageHeight =
                 item.querySelector("img")
