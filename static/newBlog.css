@@ -214,6 +214,13 @@
             line-height: 1.5;
         }
 
+        .video-card iframe{
+            width:100%;
+            aspect-ratio:9/16;
+            border:none;
+            display:block;
+        }
+
         /* LIGHTBOX */
 
 .lightbox{

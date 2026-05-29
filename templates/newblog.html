@@ -64,6 +64,22 @@
 
         {% for image in gallery_images %}
 
+        {% if loop.first %}
+        <div class="card video-card">
+
+            <iframe
+                    src="https://www.tiktok.com/player/v1/7645299035149962504"
+                    allowfullscreen
+                    loading="lazy">
+            </iframe>
+
+            <p class="caption">
+                TikTok Video
+            </p>
+
+        </div>
+        {% endif %}
+
         <div class="card">
 
             <img
@@ -175,8 +191,7 @@
 
             const resizeGridItem =
             (item) => {
-
-                const rowHeight = 10;
+            const rowHeight = 10;
 
                 const rowGap =
                 parseInt(
@@ -185,18 +200,22 @@
                     ).getPropertyValue("gap")
                 );
 
-                const imageHeight =
-                item.querySelector("img")
-                .getBoundingClientRect()
-                .height;
+                const media =
+                item.querySelector("img, iframe");
+
+                const caption =
+                item.querySelector(".caption");
+
+                if(!media || !caption) return;
+
+                const mediaHeight =
+                media.getBoundingClientRect().height;
 
                 const captionHeight =
-                item.querySelector(".caption")
-                .getBoundingClientRect()
-                .height;
+                caption.getBoundingClientRect().height;
 
                 const totalHeight =
-                imageHeight + captionHeight;
+                mediaHeight + captionHeight;
 
                 const rowSpan =
                 Math.ceil(
@@ -220,15 +239,21 @@
 
                 allCards.forEach((item) => {
 
-                    resizeGridItem(item);
+                    const media =
+                    item.querySelector("img, iframe");
 
-                    const image =
-                    item.querySelector("img");
+                    if(media){
 
-                    image.addEventListener(
-                        "load",
-                        () => resizeGridItem(item)
-                    );
+                        media.addEventListener(
+                            "load",
+                            () => resizeGridItem(item)
+                        );
+
+                        setTimeout(() => {
+                            resizeGridItem(item);
+                        }, 1000);
+
+                    }
 
                 });
 
