@@ -378,6 +378,30 @@ height: 0.75em;
     left: 69.5%;
 }
 
+.nepal:hover::before, .australia:hover::before, .tasmania:hover::before{
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    background: white;
+    color: var(--main-color);
+    padding: 0.5em 1em;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.nepal:hover::before{
+    content: "NEPAL";
+}
+.australia:hover::before{
+    content: "AUSTRALIA";
+}
+.tasmania:hover::before{
+    content: "TASMANIA";
+}
+
 .australia{
     top: 66.25%;
     left: 87.5%;
@@ -386,10 +410,6 @@ height: 0.75em;
 .tasmania{
     top: 71%;
     left: 86.5%;
-}
-
-.tasmania:hover{
-    top: 0;
 }
 
 .join{

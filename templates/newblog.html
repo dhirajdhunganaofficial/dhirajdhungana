@@ -273,8 +273,9 @@
         }
     );
 
-    const allGalleryCards =
-    document.querySelectorAll(".gallery .card");
+    const imageCards =
+    [...document.querySelectorAll(".gallery .card")]
+    .filter(card => card.querySelector("img"));
 
     const lightbox =
     document.querySelector(".lightbox");
@@ -300,7 +301,7 @@
     let currentIndex = 0;
 
     const imagesData =
-    [...allGalleryCards].map((card) => ({
+    [...imageCards].map((card) => ({
 
         src:
         card.querySelector("img").src,
@@ -374,7 +375,7 @@
 
     };
 
-    allGalleryCards.forEach((card, index) => {
+    imageCards.forEach((card, index) => {
 
         const image =
         card.querySelector("img");
