@@ -6,15 +6,31 @@ class Blog(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
 
+    sub_heading = db.Column(db.String(255), default="Wonderful")
+
     title = db.Column(db.String(255), nullable=False)
 
     slug = db.Column(db.String(255), unique=True, nullable=False)
 
     content = db.Column(db.Text, nullable=False)
 
+    country = db.Column(db.String(255), nullable=False)
+
+    youtube_url = db.Column(db.String(500), nullable=True, comment='Standard YouTube video embed URL')
+
+    youtube_short_url = db.Column(db.String(500), nullable=True, comment='YouTube Shorts embed URL')
+
+    tiktok_url = db.Column(db.String(500), nullable=True, comment='TikTok video embed URL')
+
+    facebook_url = db.Column(db.String(500), nullable=True, comment='Facebook Reel/Video embed URL')
+
+    instagram_url = db.Column(db.String(500), nullable=True, comment='Instagram Reel embed URL')
+
     featured = db.Column(db.Boolean, default=False)
 
     featured_type = db.Column(db.String(255), nullable=False, default=None)
+
+    has_blog = db.Column(db.Boolean, default=False)
 
     created_at = db.Column(
         db.DateTime,
@@ -49,7 +65,7 @@ class Image(db.Model):
     )
 
     alt_text = db.Column(
-        db.String(255),
+        db.Text,
         nullable=True
     )
 

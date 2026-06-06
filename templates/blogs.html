@@ -2,24 +2,12 @@
 <link href="{{ url_for('static', filename='blogs.css')}}" rel="stylesheet">
 
 <style>
+    body::before{
+        background-image: url('{{ url_for('static', filename='img/blogs/hero/bg.png') }}');
+    }
+
     .hero{
-        background-image: url('{{ url_for('static', filename='img/blogs/hero/manang.jpg') }}');
-    }
-
-    .primary-featured{
-        background-image: url('{{ url_for('static', filename='img/blogs/shey_phoksundo/43-2560.webp') }}');
-    }
-
-    .blog-image{
-        background-image: url('{{ url_for('static', filename='img/blogs/shey_phoksundo/43-2560.webp') }}');
-    }
-
-    .sfc1{
-        background-image: url('{{ url_for('static', filename='img/blogs/hero/dhiraj.jpg') }}');
-    }
-
-    .sfc2{
-        background-image: url('{{ url_for('static', filename='img/blogs/hero/babin.jpg') }}');
+        background-image: url('{{ url_for('static', filename='img/blogs/hero/wow.png') }}');
     }
 
 </style>
@@ -59,34 +47,33 @@
         </div>
 
         <div class="all-featured">
-            <div class="primary-featured">
+            {% set thumbnail = primaryFeaturedBlog.images|selectattr('is_thumbnail', 'equalto', true)|first %}
+            <div class="primary-featured"
+            style="background-image: url('{{ thumbnail.variants[-1].image_url if thumbnail and thumbnail.variants else '' }}');">
                 <div class="featured-post-information">
-                    <a href="#" class="badge small-text">NEPAL</a>
+                    <a href="#" class="badge small-text">{{ primaryFeaturedBlog.country }}</a>
                     <h3 class="sub-heading">{{ primaryFeaturedBlog.title }}</h3>
                     <p class="body-text faint-white">{{ primaryFeaturedBlog.content }}</p>
-                    <a href="newblog/{{ primaryFeaturedBlog.slug }}" class="read-featured-story small-text faint-white">Read
+                    <a href="newblog/{{ primaryFeaturedBlog.slug }}"
+                       class="read-featured-story small-text faint-white">Read
                         Story&nbsp&nbsp&nbsp→</a>
                 </div>
             </div>
             <div class="secondary-featured">
-                <div class="secondary-featured-child sfc1">
-                    <div class="featured-post-information">
-                        <a href="#" class="badge small-text">NEPAL</a>
-                        <h3 class="sub-heading">{{ secondaryFeaturedBlog[0].title }}</h3>
-                        <p class="body-text faint-white">{{ secondaryFeaturedBlog[0].content }}</p>
-                        <a href="newblog/{{ secondaryFeaturedBlog[0].slug }}" class="read-featured-story small-text faint-white">Read
-                            Story&nbsp&nbsp&nbsp→</a>
+                {% for blog in secondaryFeaturedBlog %}
+                {% set thumbnail = blog.images|selectattr('is_thumbnail', 'equalto', true)|first %}
+                    <div class="secondary-featured-child"
+                        style="background-image: url('{{ thumbnail.variants[-1].image_url if thumbnail and thumbnail.variants else '' }}');">
+                        <div class="featured-post-information">
+                            <a href="#" class="badge small-text">NEPAL</a>
+                            <h3 class="sub-heading">{{ blog.title }}</h3>
+                            <p class="body-text faint-white">{{ blog.content }}</p>
+                            <a href="newblog/{{ blog.slug }}"
+                               class="read-featured-story small-text faint-white">Read
+                                Story&nbsp&nbsp&nbsp→</a>
+                        </div>
                     </div>
-                </div>
-                <div class="secondary-featured-child sfc2">
-                    <div class="featured-post-information">
-                        <a href="#" class="badge small-text">NEPAL</a>
-                        <h3 class="sub-heading">{{ secondaryFeaturedBlog[1].title }}</h3>
-                        <p class="body-text faint-white">{{ secondaryFeaturedBlog[1].content }}</p>
-                        <a href="newblog/{{ secondaryFeaturedBlog[1].slug }}" class="read-featured-story small-text faint-white">Read
-                            Story&nbsp&nbsp&nbsp→</a>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </div>
@@ -99,16 +86,19 @@
 
         <div class="all-latest">
             {% for blog in blogs %}
-                <a class="latest-blog" href="newblog/{{ blog.slug }}">
-                    <div class="blog-image">
-                        <span class="badge small-text">NEPAL</span>
-                    </div>
-                    <div class="blog-information">
-                        <h3 class="sub-heading"> {{ blog.title }} </h3>
-                        <p class="body-text faint-black"> {{ blog.content }} </p>
-                        <p class="small-text faint-black"><i class='bx bx-calendar'></i> {{ blog.created_at }} </p>
-                    </div>
-                </a>
+            {% set thumbnail = blog.images|selectattr('is_thumbnail', 'equalto', true)|first %}
+
+            <a class="latest-blog" href="newblog/{{ blog.slug }}">
+                <div class="blog-image"
+                     style="background-image: url('{{ thumbnail.variants[-1].image_url if thumbnail and thumbnail.variants else '' }}');">
+                    <span class="badge small-text">{{ blog.country }}</span>
+                </div>
+                <div class="blog-information">
+                    <h3 class="sub-heading"> {{ blog.title }} </h3>
+                    <p class="body-text faint-black"> {{ blog.content }} </p>
+                    <p class="small-text faint-black"><i class='bx bx-calendar'></i> {{ blog.created_at }} </p>
+                </div>
+            </a>
             {% endfor %}
         </div>
     </div>

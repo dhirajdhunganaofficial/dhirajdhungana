@@ -20,9 +20,10 @@ def index():
 
 @app.route('/blogs')
 def blogs():
-    blogs = Blog.query.filter_by(featured = False).all()
+    blogs = Blog.query.filter_by(featured = False).order_by(Blog.created_at.desc()).all()
     featuredBlog = Blog.query.filter_by(featured = True).all()
     print(featuredBlog)
+    print(blogs)
 
     primaryFeaturedBlog = None
     secondaryFeaturedBlog = []
@@ -32,6 +33,8 @@ def blogs():
             primaryFeaturedBlog = blog
         else:
             secondaryFeaturedBlog.append(blog)
+        print(blog.title)
+        print(blog.has_blog)
 
     for blog in blogs:
         original_date = blog.created_at
@@ -46,6 +49,13 @@ def newblog(slug):
     blog = Blog.query.filter_by(slug=slug).first()
 
     print(blog)
+    print(blog.title)
+    print(blog.has_blog)
+
+    blog_images = Image.query.filter_by(
+        blog_id=blog.id,
+        type="blog"
+    )
 
     story_images = Image.query.filter_by(
         blog_id=blog.id,
@@ -66,7 +76,7 @@ def newblog(slug):
         None
     )
 
-    return render_template('newblog.html', title=blog.title, blog=blog, thumbnail=thumbnail, story_images=story_images, gallery_images=gallery_images)
+    return render_template('newblog.html', title=blog.title, blog=blog, thumbnail=thumbnail, blog_images=blog_images, story_images=story_images, gallery_images=gallery_images)
 
 @app.route('/travel_blog/<slug>')
 def new_blog(slug):
