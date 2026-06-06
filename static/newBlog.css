@@ -202,6 +202,7 @@ section{
 
 .article-content p{
     white-space: pre-line;
+    overflow: auto;
 }
 
 .content-title{
