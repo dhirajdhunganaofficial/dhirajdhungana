@@ -36,11 +36,11 @@ def blogs():
         print(blog.title)
         print(blog.has_blog)
 
-    for blog in blogs:
-        original_date = blog.created_at
-        date_obj = datetime.strptime(str(original_date), "%Y-%m-%d %H:%M:%S")
-        formatted_date = date_obj.strftime("%B %d, %Y")
-        blog.created_at = formatted_date
+    # for blog in blogs:
+    #     original_date = blog.created_at
+    #     date_obj = datetime.strptime(str(original_date), "%Y-%m-%d %H:%M:%S")
+    #     formatted_date = date_obj.strftime("%B %d, %Y")
+    #     blog.created_at = formatted_date
 
     return render_template('blogs.html', title='Dhungana Dhungana - Blogs', blogs=blogs, primaryFeaturedBlog=primaryFeaturedBlog, secondaryFeaturedBlog=secondaryFeaturedBlog)
 

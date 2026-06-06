@@ -96,7 +96,7 @@
                 <div class="blog-information">
                     <h3 class="sub-heading"> {{ blog.title }} </h3>
                     <p class="body-text faint-black"> {{ blog.content }} </p>
-                    <p class="small-text faint-black"><i class='bx bx-calendar'></i> {{ blog.created_at }} </p>
+                    <p class="small-text faint-black"><i class='bx bx-calendar'></i> {{ blog.created_at.strftime('%B %d, %Y') }} </p>
                 </div>
             </a>
             {% endfor %}
