@@ -52,7 +52,7 @@ section{
     position: relative;
     z-index: 2;
     max-width: 700px;
-    padding: 60px;
+    padding: 6rem 6rem 1rem 6rem;
 }
 
 .heading{
@@ -500,6 +500,12 @@ body.lightbox-open{
         padding: 0;
     }
 }@media(max-width:425px){
+    .hero-content{
+        padding-bottom: 0px;
+    }
+    .scroll{
+        bottom: 10px;
+    }
     .article{
         padding: 1rem;
     }

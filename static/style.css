@@ -79,6 +79,11 @@ section{
     z-index: 100;
 }
 
+.header > div{
+    display: flex;
+    gap: 1rem;
+}
+
 .logo{
     font-size: var(--logo-font-size);
     color: white;
@@ -848,13 +853,17 @@ additional css to style the link icon on hover
         padding: 1.5rem 5%;
     }
 
-    #menu-icon, .contact-navItem{
+    #menu-icon{
+        display: block;
+    }
+
+/*    #menu-icon, .contact-navItem{
         display: block;
     }
 
     .contact{
         display:none;
-    }
+    }*/
 
     .navbar {
         position: absolute;

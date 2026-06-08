@@ -1,13 +1,14 @@
 <header class="header">
     <a href="{{ url_for('index')}}" class="logo"><span>Dhi</span>raj</a>
 
-    <i class='bx bx-menu' id="menu-icon"></i>
-
     <nav class="navbar">
         <a href="{{ url_for('blogs') }}#travel">Travel</a>
         <a href="{{ url_for('blogs') }}#tech">Tech</a>
         <a href="{{ url_for('blogs') }}#bartender">Bartending</a>
     </nav>
 
-    <a href="{{ url_for('index') }}#contact" class="contact">Contact Me</a>
+    <div>
+        <a href="{{ url_for('index') }}#contact" class="contact">Contact Me</a>
+        <i class='bx bx-menu' id="menu-icon"></i>
+    </div>
 </header>
