@@ -884,6 +884,10 @@ additional css to style the link icon on hover
         margin: 3rem 0;
     }
 
+    .contact{
+        padding: 1rem;
+    }
+
     section{
         padding: 0 5%;
     }
