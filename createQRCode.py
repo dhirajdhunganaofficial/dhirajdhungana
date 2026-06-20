@@ -13,7 +13,9 @@ def generateQRCode(url):
     qr = qrcode.QRCode()
     qr.add_data(url)
 
-    img = qr.make_image()
+    img = qr.make_image(
+        fill_color= (255,69,0)
+    )
 
     #encoding to Base64
     buf = io.BytesIO()
