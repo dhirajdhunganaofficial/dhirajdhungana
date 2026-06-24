@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Dancing+Script:wght@400;500&display=swap');
 
-body{
+html{
     position: relative;
     min-height: 100vh;
 }
-body::before{
+html::before{
     content: '';
     position: absolute;
     top: 0;
@@ -17,6 +17,12 @@ body::before{
     background-attachment: fixed;
     opacity: 0.3;  /* ✅ Only background is transparent */
     z-index: -1;
+}
+
+body{
+    width: 100%;
+    max-width: 1920px;
+    margin: 0 auto;
 }
 
 section{
@@ -37,6 +43,23 @@ section{
     display: flex;
     align-items: center;
     color: white;
+}
+
+.hero {
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 2.5%,
+    black 97.5%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 2.5%,
+    black 97.5%,
+    transparent 100%
+  );
 }
 
 /* dark overlay */
