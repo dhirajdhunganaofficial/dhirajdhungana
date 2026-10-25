@@ -478,8 +478,12 @@ section{
 body.lightbox-open{
     overflow: hidden;
 }
-
-@media(max-width:768px){
+@media(max-width:1920px){
+    .hero {
+        mask-image: unset;
+        -webkit-mask-image: unset;
+    }
+}@media(max-width:768px){
     .lightbox-prev,
     .lightbox-next{
         width: 45px;

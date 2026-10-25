@@ -44,8 +44,8 @@ def blogs():
 
     return render_template('blogs.html', title='Dhungana Dhungana - Blogs', blogs=blogs, primaryFeaturedBlog=primaryFeaturedBlog, secondaryFeaturedBlog=secondaryFeaturedBlog)
 
-@app.route('/newblog/<slug>')
-def newblog(slug):
+@app.route('/blog/<slug>')
+def blog(slug):
     blog = Blog.query.filter_by(slug=slug).first()
 
     print(blog)
@@ -76,7 +76,7 @@ def newblog(slug):
         None
     )
 
-    return render_template('newblog.html', title=blog.title, blog=blog, thumbnail=thumbnail, blog_images=blog_images, story_images=story_images, gallery_images=gallery_images)
+    return render_template('blog.html', title=blog.title, blog=blog, thumbnail=thumbnail, blog_images=blog_images, story_images=story_images, gallery_images=gallery_images)
 
 @app.route('/travel_blog/<slug>')
 def new_blog(slug):

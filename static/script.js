@@ -64,3 +64,37 @@ for (let button of readMore){
         }
     });
 }
+
+let featuredPost = document.querySelectorAll(".primary-featured");
+
+featuredPost.forEach((post) =>{
+
+        post.addEventListener("click", (e) => {
+        // If an actual link was clicked, let it work normally
+        if (e.target.closest("a")) return;
+
+        // Find the Read Story link inside this card
+        let readStory = post.querySelector(".read-featured-story");
+
+        if (readStory) {
+            readStory.click();
+        }
+    });
+})
+
+let secondaryFeaturedPosts = document.querySelectorAll(".secondary-featured-child")
+
+secondaryFeaturedPosts.forEach((post) =>{
+
+        post.addEventListener("click", (e) => {
+        // If an actual link was clicked, let it work normally
+        if (e.target.closest("a")) return;
+
+        // Find the Read Story link inside this card
+        let readStory = post.querySelector(".read-featured-story");
+
+        if (readStory) {
+            readStory.click();
+        }
+    });
+})

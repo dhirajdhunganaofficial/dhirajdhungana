@@ -54,7 +54,7 @@
                     <a href="#" class="badge small-text">{{ primaryFeaturedBlog.country }}</a>
                     <h3 class="sub-heading">{{ primaryFeaturedBlog.title }}</h3>
                     <p class="body-text faint-white">{{ primaryFeaturedBlog.content }}</p>
-                    <a href="newblog/{{ primaryFeaturedBlog.slug }}"
+                    <a href="blog/{{ primaryFeaturedBlog.slug }}"
                        class="read-featured-story small-text faint-white">Read
                         Story&nbsp&nbsp&nbsp→</a>
                 </div>
@@ -68,7 +68,7 @@
                             <a href="#" class="badge small-text">NEPAL</a>
                             <h3 class="sub-heading">{{ blog.title }}</h3>
                             <p class="body-text faint-white">{{ blog.content }}</p>
-                            <a href="newblog/{{ blog.slug }}"
+                            <a href="blog/{{ blog.slug }}"
                                class="read-featured-story small-text faint-white">Read
                                 Story&nbsp&nbsp&nbsp→</a>
                         </div>
@@ -88,7 +88,7 @@
             {% for blog in blogs %}
             {% set thumbnail = blog.images|selectattr('is_thumbnail', 'equalto', true)|first %}
 
-            <a class="latest-blog" href="newblog/{{ blog.slug }}">
+            <a class="latest-blog" href="blog/{{ blog.slug }}">
                 <div class="blog-image"
                      style="background-image: url('{{ thumbnail.variants[-1].image_url if thumbnail and thumbnail.variants else '' }}');">
                     <span class="badge small-text">{{ blog.country }}</span>
