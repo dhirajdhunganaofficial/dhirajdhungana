@@ -38,12 +38,9 @@ def sendEmail(botField,name,email,phoneNumber,subject,message):
     if botField and botField.strip():
         return "Email not sent! Bot detected successfully!"
 
-    email, password = get_secret()
-    print(email, password)
-
     # -------- 1. Email Login Details --------
-    your_email = email
-    your_app_password = password  # NOT your Gmail password!
+
+    your_email, your_app_password = get_secret()  # NOT your Gmail password!
 
     # -------- 2. Email Content --------
     contact_name = name
