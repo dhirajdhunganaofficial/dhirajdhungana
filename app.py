@@ -110,15 +110,21 @@ def oldSite():
 
 @app.route("/contactInformation", methods=['POST'])
 def notifyAboutContactInformation():
+    botField = request.form.get('BotChaiyena', '')
+    print("botField")
+    print(botField)
+
+    # Honeypot validation
+    if botField.strip():
+        return "Bot detected!", 400
+
     name=request.form['Full Name']
     email=request.form['Email']
     phoneNumber=request.form['Phone Number']
     subject=request.form['Subject']
     message=request.form['Message']
-    botField = request.form['BotChaiyena']
-    print("botField")
-    print(botField)
-    sendEmail.sendEmail(botField,name,email,phoneNumber,subject,message)
+
+    sendEmail.sendEmail(name,email,phoneNumber,subject,message)
     return redirect(url_for('index'))
 
 @app.route('/qrCode')

@@ -33,10 +33,7 @@ def get_secret():
 
 
 
-def sendEmail(botField,name,email,phoneNumber,subject,message):
-
-    if botField and botField.strip():
-        return "Email not sent! Bot detected successfully!"
+def sendEmail(name,email,phoneNumber,subject,message):
 
     # -------- 1. Email Login Details --------
 
