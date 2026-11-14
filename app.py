@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for
 from datetime import datetime
+import re
 
 from flask_migrate import Migrate
 from config import Config
@@ -108,23 +109,88 @@ def new_blog(slug):
 def oldSite():
     return render_template('oldSite.html')
 
+def validateContactForm(form):
+
+    # 1. Retrieve submitted values
+    name = form.get('Full Name', '').strip()
+    email = form.get('Email', '').strip()
+    phoneNumber = form.get('Phone Number', '').strip()
+    subject = form.get('Subject', '').strip()
+    message = form.get('Message', '').strip()
+
+    # 2. Validate required fields
+    if not name:
+        return "Full Name is required!"
+
+    if not email:
+        return "Email is required!"
+
+    if not message:
+        return "Message is required!"
+
+    # 3. Validate maximum character lengths
+    if len(name) > 100:
+        return "Name cannot exceed 100 characters!"
+
+    if len(email) > 254:
+        return "Email address is too long!"
+
+    if len(subject) > 150:
+        return "Subject cannot exceed 150 characters!"
+
+    if len(message) > 5000:
+        return "Message cannot exceed 5000 characters!"
+
+    # 4. Validate email format
+    emailPattern = r'^[A-Za-z0-9_%+-]+(?:\.[A-Za-z0-9_%+-]+)*@[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?(?:\.[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?)+$'
+
+    if not re.fullmatch(emailPattern, email):
+        return "Please provide a valid email address!"
+
+    # 5. Validate phone number (optional)
+    if phoneNumber:
+
+        # Allow digits, spaces, +, brackets and hyphens
+        if not re.fullmatch(r'[0-9+\s()-]+', phoneNumber):
+            return "Invalid phone number!"
+
+        # Count actual digits
+        digits = re.sub(r'\D', '', phoneNumber)
+
+        if not 7 <= len(digits) <= 15:
+            return "Phone number must contain 7–15 digits!"
+
+    # 6. All validations passed
+    return None
+
 @app.route("/contactInformation", methods=['POST'])
 def notifyAboutContactInformation():
-    botField = request.form.get('BotChaiyena', '')
-    print("botField")
-    print(botField)
 
-    # Honeypot validation
+    # 1. Check honeypot field exists
+    if 'BotChaiyena' not in request.form:
+        return "Invalid submission!", 400
+
+    # 2. Check honeypot field is empty
+    botField = request.form.get('BotChaiyena', '')
+
     if botField.strip():
         return "Bot detected!", 400
 
-    name=request.form['Full Name']
-    email=request.form['Email']
-    phoneNumber=request.form['Phone Number']
-    subject=request.form['Subject']
-    message=request.form['Message']
+    # 3. Validate all submitted form fields
+    error = validateContactForm(request.form)
 
-    sendEmail.sendEmail(name,email,phoneNumber,subject,message)
+    if error:
+        return error, 400
+
+    # 4. Retrieve validated information
+    name = request.form.get('Full Name', '').strip()
+    email = request.form.get('Email', '').strip()
+    phoneNumber = request.form.get('Phone Number', '').strip()
+    subject = request.form.get('Subject', '').strip()
+    message = request.form.get('Message', '').strip()
+
+    # 5. Send email
+    sendEmail.sendEmail(name, email, phoneNumber, subject, message)
     return redirect(url_for('index'))
 
 @app.route('/qrCode')
