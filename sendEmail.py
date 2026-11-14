@@ -6,6 +6,8 @@ import boto3
 from botocore.exceptions import ClientError
 import json
 
+from html import escape
+
 def get_secret():
 
     secret_name = "email/smtp-credentials"
@@ -40,14 +42,12 @@ def sendEmail(name,email,phoneNumber,subject,message):
     your_email, your_app_password = get_secret()  # NOT your Gmail password!
 
     # -------- 2. Email Content --------
-    contact_name = name
-    contact_email = email
-    contact_phoneNumber = phoneNumber
-    subject = subject + " - Personal Website Alert"
+    contact_name = escape(name)
+    contact_email = escape(email)
+    contact_phoneNumber = escape(phoneNumber)
+    subject = escape(subject) + " - Personal Website Alert"
 
-    message = message
-
-    print(message)
+    message = escape(message)
 
     body = f"""
     <html>
