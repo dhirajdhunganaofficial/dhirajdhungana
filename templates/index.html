@@ -329,8 +329,18 @@
 
     <form id="contact-form" action="/contactInformation" method="post">
 
-        <label for="botChaiyena" style="display:none;">Leave this field empty</label>
-        <input type="text" id="botChaiyena" name="BotChaiyena" style="display:none;" tabindex="-1" autocomplete="off">
+        <div style="position: absolute; left: -9999px;"
+             aria-hidden="true">
+
+            <label for="botChaiyena">Leave this field empty</label>
+
+            <input type="text"
+                   id="botChaiyena"
+                   name="BotChaiyena"
+                   tabindex="-1"
+                   autocomplete="off">
+
+        </div>
 
         <div class="input-box">
             <input type="text" placeholder="Full Name" name="Full Name" required>
